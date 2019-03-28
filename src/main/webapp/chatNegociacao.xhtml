@@ -1,0 +1,89 @@
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Java Server Faces</title>    
+    </h:head>
+    <h:body>      
+
+        <ui:include src="/WEB-INF/menu.xhtml" />
+
+
+        <h:form prependId="false">
+            <p:panel header="CHAT" rendered="#{controladorLogado.recicladorLogado != null}"
+                     style="margin-left: 10%; margin-top: 5%; margin-right: 10%;">
+                <p:dataTable id="dataTableReciclador" value="#{controleChatLazyModel.model}" var="msg" lazy="true" paginator="true" rows="15"
+                             style="margin-top: 2%;" emptyMessage="Nenhuma mensagem ainda para este Chat!">
+                    <p:column headerText="REMETENTE" width="15%">
+                        <p:outputLabel value="#{controladorNegociacao.quemEnviouMsg(msg)}" />
+                    </p:column>
+
+                    <p:column headerText="MENSAGEM" width="20%">
+                        <p:outputLabel value="#{msg.mensagem}" />
+                    </p:column>
+
+                    <p:column headerText="DATA/HORA" width="10%">
+                        <p:outputLabel value="#{msg.dataHora}" />
+                    </p:column>
+                </p:dataTable>
+                    <p:inputTextarea id="novaMsg" value="#{controleChatLazyModel.novaMensagem}" 
+                                     style="margin-top: 2%; width: 100%; color: green; background-color: white;" rows="2" cols="5">
+                        <p:ajax event="change" process="@this" />
+                    </p:inputTextarea>
+                
+                <f:facet name="footer">
+                <p:commandButton id="btn-enviar" icon="fa fa-send" value="Enviar Mensagem"
+                     action="#{controleChatLazyModel.adicionarNovaMensagemReciclador(controladorLogado.recicladorLogado)}"
+                     style="margin-top: 2%" update="dataTableReciclador, novaMsg" immediate="true"/>
+                
+                <p:commandButton id="btn-update" icon="fa fa-send" value="Atualizar Lista"
+                                 action="#{controleChatLazyModel.atualizarLista()}"
+                     style="margin-top: 2%; margin-left: 1%;" update="dataTableReciclador, novaMsg" immediate="true"/>
+                </f:facet>
+            </p:panel>
+            
+            <p:panel header="CHAT" rendered="#{controladorLogado.geradorLogado != null}"
+                     style="margin-left: 10%; margin-top: 5%; margin-right: 10%;">
+                <p:dataTable id="dataTableGerador" value="#{controleChatLazyModel.model}" var="msg2" lazy="true" paginator="true" rows="15"
+                             style="margin-top: 2%;" emptyMessage="Nenhuma mensagem ainda para este Chat!">
+                    <p:column headerText="REMETENTE" width="15%">
+                        <p:outputLabel value="#{controladorNegociacao.quemEnviouMsg(msg2)}" />
+                    </p:column>
+
+                    <p:column headerText="MENSAGEM" width="20%">
+                        <p:outputLabel value="#{msg2.mensagem}" />
+                    </p:column>
+
+                    <p:column headerText="DATA/HORA" width="10%">
+                        <p:outputLabel value="#{msg2.dataHora}" />
+                    </p:column>
+                </p:dataTable>
+                   <p:inputTextarea id="novaMsg2" value="#{controleChatLazyModel.novaMensagem}" 
+                                     style="margin-top: 2%; width: 100%; color: green; background-color: white;" rows="2" cols="5">
+                        <p:ajax event="change" process="@this" />
+                    </p:inputTextarea>
+                
+                <f:facet name="footer">
+                <p:commandButton id="btn-enviar2" icon="fa fa-send" value="Enviar Mensagem"
+                     action="#{controleChatLazyModel.adicionarNovaMensagemGerador(controladorLogado.geradorLogado)}"
+                     style="margin-top: 2%" update="dataTableGerador, novaMsg2" immediate="true"/>
+                
+                <p:commandButton id="btn-update2" icon="fa fa-send" value="Atualizar Lista"
+                                 action="#{controleChatLazyModel.atualizarLista()}"
+                     style="margin-top: 2%; margin-left: 1%;" update="dataTableGerador, novaMsg2" immediate="true"/>
+                </f:facet>
+            </p:panel>
+        </h:form>
+        
+    </h:body>
+</html>
