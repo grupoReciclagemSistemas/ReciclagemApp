@@ -70,6 +70,13 @@ and open the template in the editor.
                             <p:column headerText="CIDADE DO GERADOR" style="font-size: 16px;">
                                 <h:outputText value="#{pedido.gerador.endereco.cidade}" />
                             </p:column>
+                            <p:column headerText="DISTÂNCIA" style="font-size: 16px;">
+                                <h:outputText value="#{controladorPedidoReciclagem.calcularDistancia(pedido, controladorLogado.recicladorLogado)}" />
+                            </p:column>
+                             <p:column headerText="VER NO MAPA" style="font-size: 16px;">
+                                <p:commandButton icon="fa fa-map" value="MAPA" immediate="true" update="messages"
+                                                 action="mapa?faces-redirect=true" actionListener="#{controleMap.setCenterGeoMap(pedido.gerador.retornaLatLng())}" />
+                            </p:column>
                             <p:column headerText="NEGOCIAR" style="font-size: 16px;">
                                 <p:commandButton icon="fa fa-money" value="Negociar" immediate="true" update="messages"
                                                  action="#{controladorReciclador.entrarEmNegociacao(pedido, controladorLogado.recicladorLogado)}" />

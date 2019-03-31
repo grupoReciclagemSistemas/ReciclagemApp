@@ -33,6 +33,9 @@ public class Endereco implements Serializable {
     private String cidade;
     private String bairro;
     
+    private double lat;
+    private double lng;
+    
     @OneToOne
     private PessoaJuridica pessoa;
     
@@ -161,6 +164,34 @@ public class Endereco implements Serializable {
      */
     public void setPessoa(PessoaJuridica pessoa) {
         this.pessoa = pessoa;
+    }
+
+    /**
+     * @return the lat
+     */
+    public double getLat() {
+        return lat;
+    }
+
+    /**
+     * @param lat the lat to set
+     */
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    /**
+     * @return the lng
+     */
+    public double getLng() {
+        return lng;
+    }
+
+    /**
+     * @param lng the lng to set
+     */
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 
     
