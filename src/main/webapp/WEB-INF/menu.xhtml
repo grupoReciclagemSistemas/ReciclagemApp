@@ -158,11 +158,29 @@ and open the template in the editor.
 
             #jumbotron-rodape-inferior{
                 background-color: #558b2f;
-                color:#white !important;  
+                color: white !important;  
                 margin: 0;
+            }
 
+            #rodape-inferior{
+                background-color: #558b2f;
+                color: white !important;  
+                margin: 0;
+                margin-bottom: auto;
+            }
+
+            .rodape-esquerda{
+                margin-left: 15px;
+                color: white;
 
             }
+            .rodape-direita{
+                margin-right: 4px;
+                color: white;
+            }
+
+
+
             .jumbotron-rodape-superior{
 
                 background-color: #7cb342; margin: 0;
@@ -172,8 +190,8 @@ and open the template in the editor.
                 text-align: center;
                 color: #558b2f;
             }
-            
-             
+
+
             .painel{
                 margin-left: 50px;
                 margin-right: 50px;
@@ -208,60 +226,105 @@ and open the template in the editor.
 
             }
 
+            .background{
+                background-image:url(/PegarABUILDDD/resources/img/background-jumbotron.jpg);
+                margin: 0;
+            }
+
+            .fundoRegistrar{
+                background-image:url(/PegarABUILDDD/resources/img/background-jumbotron.jpg);
+                margin: 0;                
+                min-height:50%;
+                min-width:50%;
+                height: 800px;
+                width: 100%;
+                position: center;
+                margin-top: 5%;
+            }
+
+            .inputText-100{
+                width: 100%;
+                background-color: white;
+                color: green;
+                font-size: 16px;
+            }
+
+            .inputNumber-30{
+                width: 30%;
+                background-color: white;
+                color: green;
+                font-size: 16px;
+            }
+            .command-button-registrar{
+             font-size: 18px;
+            }
+            
+            .command-button-cancelar{
+              margin-left: 4px;
+              font-size: 18px;
+            }
+            
+            .cep{
+                width: 35%;
+                background-color: white;
+                color: green;
+                font-size: 16px;
+            }
+
         </style>
     </h:head>
 
     <h:body >
         <h:form id="formMenu" prependId="false">
-              <b:growl id="messages" />
- 
+            <b:growl id="messages" />
+
             <b:navBar class="navbar" brand="Reclick" brandStyle="color: white; font-size: 18px; font-style: italic;" brand-img="resources/img/logo.png" brand-img-style="width: 35px; padding-right: 10px;" fixed="top" brandHref="index.xhtml">
                 <b:navbarLinks styleClass="navbar-right">
                     <b:navCommandLink style="color: white; font-weight: bold;" value="Inicio" action="index?faces-redirect=true" />
                     <b:navCommandLink style="color: white; font-weight: bold;" value="Sobre" action="index?faces-redirect=true" />               
                     <b:navCommandLink style="color: white; font-weight: bold;" value="Materiais Vendendo" action="listaVenda_material?faces-redirect=true" />
-                    
+
                     <b:navCommandLink style="color: white; font-weight: bold;" value="LOGAR" 
                                       action="#{controladorLogado.abrirPopupLogar()}" 
                                       rendered="#{controladorLogado.verificarLogado() == false}"  />
-                    
+
                     <b:dropMenu style="color: white; font-weight: bold;" value="#{controladorLogado.geradorLogado.razaoSocial}"
                                 rendered="#{controladorLogado.geradorLogado != null}">
                         <center>
-                           <p:commandButton value="Sua Conta" icon="fa fa-user" action="minha_conta?faces-redirect=true" 
-                                            style="width: 90%;"/>
-                           
-                           <p:commandButton value="Deslogar" icon="fa fa-arrow-circle-left" action="#{controladorLogado.deslogar()}" 
-                                            style="width: 90%; margin-top: 1%;"/>
+                            <p:commandButton value="Sua Conta" icon="fa fa-user" action="minha_conta?faces-redirect=true" 
+                                             style="width: 90%;"/>
+
+                            <p:commandButton value="Deslogar" icon="fa fa-arrow-circle-left" action="#{controladorLogado.deslogar()}" 
+                                             style="width: 90%; margin-top: 1%;"/>
                         </center>
                     </b:dropMenu>
-                    
+
                     <b:dropMenu style="color: white; font-weight: bold;" value="#{controladorLogado.recicladorLogado.razaoSocial}"
                                 rendered="#{controladorLogado.recicladorLogado != null}">
                         <center>
-                           <p:commandButton value="Sua Conta" icon="fa fa-user" action="minha_conta?faces-redirect=true"
-                                            style="width: 90%;"/>
-                           
-                           <p:commandButton value="Deslogar" icon="fa fa-arrow-circle-left" action="#{controladorLogado.deslogar()}"  
-                                            style="width: 90%; margin-top: 1%;"/>
+                            <p:commandButton value="Sua Conta" icon="fa fa-user" action="minha_conta?faces-redirect=true"
+                                             style="width: 90%;"/>
+
+                            <p:commandButton value="Deslogar" icon="fa fa-arrow-circle-left" action="#{controladorLogado.deslogar()}"  
+                                             style="width: 90%; margin-top: 1%;"/>
                         </center>
                     </b:dropMenu>
-                    
+
                     <b:dropMenu style="color: white; font-weight: bold;" value="#{controladorLogado.transportadorLogado.razaoSocial}"
                                 rendered="#{controladorLogado.transportadorLogado != null}" >
                         <center>
-                           <p:commandButton value="Sua Conta" icon="fa fa-user" action="minha_conta?faces-redirect=true"
-                                            style="width: 90%;"/>
-                           
-                           <p:commandButton value="Deslogar" icon="fa fa-arrow-circle-left" action="#{controladorLogado.deslogar()}" 
-                                            style="width: 90%; margin-top: 1%;"/>
+                            <p:commandButton value="Sua Conta" icon="fa fa-user" action="minha_conta?faces-redirect=true"
+                                             style="width: 90%;"/>
+
+                            <p:commandButton value="Deslogar" icon="fa fa-arrow-circle-left" action="#{controladorLogado.deslogar()}" 
+                                             style="width: 90%; margin-top: 1%;"/>
                         </center>
                     </b:dropMenu>
-                    
+
                 </b:navbarLinks>
             </b:navBar>  
         </h:form>
-        
+
         <ui:include src="../login.xhtml" />
     </h:body>
 </html>
