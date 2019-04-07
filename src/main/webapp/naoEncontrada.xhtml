@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui" >
+
+    <h:head>
+        <title>Registrar Nova Conta</title> 
+        <style>
+
+            .fundo-erro-404{
+                background-image:url(/PegarABUILDDD/resources/img/background-jumbotron.jpg);
+                margin: 0;                
+                min-height:50%;
+                min-width:50%;
+                height: 800px;
+                width: 100%;
+                position: center;
+                margin-top: 5%;
+            }
+            .erro-404{
+                font-size: 200px;
+                font-family: Lucida Console;
+                color: #696969;
+            }
+
+            .pagina-nao-encontrada{
+                font-size: 20px;
+                font-family: Lucida Console;
+                color: #696969;
+            }
+        </style>
+    </h:head>
+    <h:body style="margin: 0px;" class="background">
+
+        <center>
+            <div>
+
+                <ui:include src="/WEB-INF/menu.xhtml" />
+
+
+                <h:form prependId="false" style="margin-top: 3%;">
+                    <p:messages id="mensagens"  />
+                </h:form>
+                <div class="fundo-erro-404">
+                    <h:panelGrid  columns="2" cellpadding="10">
+                        <div>
+                            <p class="erro-404"> Ops! </p>
+                            <h:outputText class="pagina-nao-encontrada" value="Página não encontrada!!" />
+                        </div>
+
+                    </h:panelGrid>
+
+                </div>
+                <b:jumbotron id="jumbotron-rodape-inferior">
+                    <footer>
+                        <center> 
+                            <h:form id="rodape-inferior">
+                                <h:outputLabel class="rodape-direita" value="@ Copywrith 2014"/>            
+                                <h:outputLabel value="Todos os direitos reservados" />  
+                                <h:commandLink class="rodape-esquerda" action="admin/logar?faces-redirect=true" value="Painel do Admin"/>
+                            </h:form>
+                        </center>
+                    </footer>
+                </b:jumbotron>
+            </div>
+        </center>
+    </h:body>
+</html>
+
