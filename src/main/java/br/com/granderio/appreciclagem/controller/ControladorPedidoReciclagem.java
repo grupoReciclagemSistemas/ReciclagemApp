@@ -7,10 +7,17 @@ package br.com.granderio.appreciclagem.controller;
 
 import br.com.granderio.appreciclagem.dao.DAO;
 import br.com.granderio.appreciclagem.dao.DAOPedidoReciclagem;
+import br.com.granderio.appreciclagem.model.Endereco;
 import br.com.granderio.appreciclagem.model.Material;
 import br.com.granderio.appreciclagem.model.PedidoReciclagem;
+import br.com.granderio.appreciclagem.model.Reciclador;
+import br.com.granderio.appreciclagem.util.UtilMap;
+import com.google.maps.errors.ApiException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -43,6 +50,19 @@ public class ControladorPedidoReciclagem extends ControladorPrincipal<PedidoReci
                 + "AND P.gerador_idPessoaJuridica = " + id;
         DAO<PedidoReciclagem> dao = new DAO(new PedidoReciclagem());
         return (List<PedidoReciclagem>) dao.executarConsultaPersonalizada(query);
+    }
+    
+    public String calcularDistancia(PedidoReciclagem pedido, Reciclador logado){
+        Endereco end1 = pedido.getGerador().getEndereco();
+        Endereco end2 = logado.getEndereco();
+        String endStr1 = end1.getLogradouro() + "," + end1.getNumero() + "," + end1.getCidade();
+        String endStr2 = end2.getLogradouro() + "," + end2.getNumero() + "," + end2.getCidade();
+        try {
+            return UtilMap.calcularDistancia(endStr1, endStr2);
+        } catch (ApiException | IOException | InterruptedException ex) {
+            Logger.getLogger(ControladorPedidoReciclagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     public void updateList(){

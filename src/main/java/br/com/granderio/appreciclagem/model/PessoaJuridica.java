@@ -154,8 +154,7 @@ public abstract class PessoaJuridica implements Serializable {
     }
 
    
-    
-
-   
-
+    public String retornaLatLng(){
+        return getEndereco().getLat() + ", " + getEndereco().getLng();
+    }
 }

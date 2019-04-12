@@ -26,8 +26,10 @@ import org.primefaces.model.map.Marker;
 public class ControladorGMap {
     
     private MapModel geoModel;
-    private String centerGeoMap = "41.850033, -87.6500523";
+    private String centerGeoMap;
     
+    private LatLng coordenada;
+ 
     @PostConstruct
     public void init() {
         geoModel = new DefaultMapModel();
@@ -58,6 +60,11 @@ public class ControladorGMap {
      * @param centerGeoMap the centerGeoMap to set
      */
     public void setCenterGeoMap(String centerGeoMap) {
+        if(centerGeoMap!=null){
+            String[] split = centerGeoMap.split(",");
+            coordenada = new LatLng(Double.valueOf(split[0]), Double.valueOf(split[1]));
+            geoModel.addOverlay(new Marker(coordenada, "Gerador"));
+        }
         this.centerGeoMap = centerGeoMap;
     }
 

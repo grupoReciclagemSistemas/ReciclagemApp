@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>Geradores do Sistema</title>
+    </h:head>
+    
+    <h:body>
+        
+        <ui:include src="/WEB-INF/menu_admin.xhtml" />
+        
+        <h:form prependId="false" style="margin-top: 4%;">
+            <p:messages id="messages" closable="false" showIcon="true" showDetail="true"  />
+            <p:tabView prependId="false">
+                <p:tab title="Inserir Nova Legislação">
+                    <h:panelGrid columns="2" style="width: 35%;">
+                        <p:outputLabel value="CODIGO" for="codigo" />
+                        <p:inputText id="codigo" value="#{controladorLegislacao.novaLesgilacao.codigo}" required="true" requiredMessage="O código é obrigatório"  />
+
+                        <p:outputLabel value="DESCRIÇÃO COMPLETA" for="descricaoCompleta" style="margin-top: 3%;" />
+                        <p:inputTextarea id="descricaoCompleta" value="#{controladorLegislacao.novaLesgilacao.descricao}" required="true"
+                                         requiredMessage="A descrição completa é obrigatória" style="margin-top: 3%; width: 100%;" />
+                        
+                        <p:outputLabel value="DESCRIÇÃO RESUMO" for="descricaoResumo" style="margin-top: 3%;" />
+                        <p:inputTextarea id="descricaoResumo" value="#{controladorLegislacao.novaLesgilacao.resumoDescricao}" required="true"
+                                         requiredMessage="O resumo de descrição é obrigatório" style="margin-top: 3%; width: 100%;" />
+                        
+                        
+                    </h:panelGrid>
+  
+                    <p:separator />
+                    <p:commandButton icon="fa fa-plus-circle" value="Inserir" action="#{controladorLegislacao.adicionarLegislacao()}"
+                                     style="color: green; border-color: green;" update="@form"/>
+                </p:tab>
+            </p:tabView>
+        </h:form>
+        
+    </h:body>
+</html>

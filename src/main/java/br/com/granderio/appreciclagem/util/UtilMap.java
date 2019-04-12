@@ -16,6 +16,7 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.TravelMode;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -29,25 +30,21 @@ public class UtilMap {
     
     private static final String CHAVE_GOOGLE = "";
     
-    public static void codigoGeo(String endereco) throws ApiException, InterruptedException, IOException{
+    public static String codigoGeo(String endereco) throws ApiException, InterruptedException, IOException{
         GeoApiContext context = new GeoApiContext.Builder().apiKey(CHAVE_GOOGLE).build();
         GeocodingResult[] results = GeocodingApi.geocode(context, endereco).await();
-       
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        System.out.println(gson.toJson(results[0].addressComponents));  
+        return results[0].geometry.location.lat + "," + results[0].geometry.location.lng;
     }
     
     // Remetente --> Pessoa logada no sistema
     // Destino --> Cada um do DataTable
-    public static void calcularDistancia(String enderecoRemetente, String enderecoDestino) throws ApiException, IOException, InterruptedException{
+    public static String calcularDistancia(String enderecoRemetente, String enderecoDestino) throws ApiException, IOException, InterruptedException{
        GeoApiContext context = new GeoApiContext.Builder().apiKey(CHAVE_GOOGLE).build();
        
-       DirectionsApiRequest request = DirectionsApi.getDirections(context, enderecoRemetente, enderecoDestino).language("pt_BR");
+       DirectionsApiRequest request = DirectionsApi.getDirections(context, enderecoRemetente, enderecoDestino).language("pt_BR").mode(TravelMode.DRIVING);
        DirectionsResult result = request.await();
        DirectionsRoute[] rota = result.routes;
-       System.out.println(Arrays.toString(rota));    
-       Gson gson = new GsonBuilder().setPrettyPrinting().create();
-       System.out.println(gson.toJson(result));
+       return rota[0].legs[0].distance.humanReadable; 
     }
 
     /**

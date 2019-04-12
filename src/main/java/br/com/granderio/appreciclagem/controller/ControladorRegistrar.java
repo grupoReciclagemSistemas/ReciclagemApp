@@ -15,7 +15,10 @@ import br.com.granderio.appreciclagem.model.Gerador;
 import br.com.granderio.appreciclagem.model.Reciclador;
 import br.com.granderio.appreciclagem.model.Transportador;
 import br.com.granderio.appreciclagem.util.Consulta;
+import br.com.granderio.appreciclagem.util.UtilMap;
 import br.com.granderio.appreciclagem.util.UtilMensagens;
+import com.google.maps.errors.ApiException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -97,6 +100,7 @@ public  class ControladorRegistrar implements Serializable {
     
 
      public String registrarTransportador(){
+        String retorno = null;
        DAOTransportador acesso = new DAOTransportador(novoTransportador);
        novoTransportador.getEndereco().setPessoa(novoTransportador);
        novoTransportador.setPedidosDeReciclagens(null);
@@ -105,7 +109,17 @@ public  class ControladorRegistrar implements Serializable {
        if( acesso.verificarEmail(email) || acesso.verificarCNPJ(cnpj) ){
             UtilMensagens.mensagemError("Já existe o Transportador no Sistema!");   
             return "";
-        }  
+        }
+       //Insere LAT E LNG
+       Endereco end = novoTransportador.getEndereco();
+        try {
+            retorno = UtilMap.codigoGeo(end.getLogradouro() + "," + end.getNumero() + "," +end.getCidade());
+            String[] split = retorno.split(",");
+            novoTransportador.getEndereco().setLat(Double.valueOf(split[0]));
+            novoTransportador.getEndereco().setLng(Double.valueOf(split[1]));
+        } catch (ApiException | InterruptedException | IOException ex) {
+            Logger.getLogger(ControladorRegistrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
        acesso.inserir();
        novoTransportador = new Transportador();
        tipoDePessoa = 0;
@@ -114,6 +128,7 @@ public  class ControladorRegistrar implements Serializable {
     }
      
     public String registrarGerador(){
+        String retorno = null;
         DAOGerador acesso = new DAOGerador(novoGerador);
         novoGerador.getEndereco().setPessoa(novoGerador);
         novoGerador.setEstoques(null);
@@ -123,6 +138,16 @@ public  class ControladorRegistrar implements Serializable {
             UtilMensagens.mensagemError("Já existe o Gerador no Sistema!");
             return "";
         }
+        //Insere LAT E LNG
+       Endereco end = novoGerador.getEndereco();
+        try {
+            retorno = UtilMap.codigoGeo(end.getLogradouro() + "," + end.getNumero() + "," +end.getCidade());
+            String[] split = retorno.split(",");
+            novoGerador.getEndereco().setLat(Double.valueOf(split[0]));
+            novoGerador.getEndereco().setLng(Double.valueOf(split[1]));
+        } catch (ApiException | InterruptedException | IOException ex) {
+            Logger.getLogger(ControladorRegistrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
         acesso.inserir();
         novoGerador = new Gerador();
         tipoDePessoa = 0;
@@ -131,6 +156,7 @@ public  class ControladorRegistrar implements Serializable {
     }
     
     public String registrarReciclador(){
+        String retorno = null;
         DAOReciclador acesso = new DAOReciclador(novoReciclador);
         novoReciclador.getEndereco().setPessoa(novoReciclador);
         novoReciclador.setPedidosDeReciclagens(null);
@@ -140,6 +166,16 @@ public  class ControladorRegistrar implements Serializable {
             UtilMensagens.mensagemError("Já existe o Reciclador no Sistema!");
             return "";
         }  
+       //Insere LAT E LNG
+       Endereco end = novoReciclador.getEndereco();
+        try {
+            retorno = UtilMap.codigoGeo(end.getLogradouro() + "," + end.getNumero() + "," +end.getCidade());
+            String[] split = retorno.split(",");
+            novoReciclador.getEndereco().setLat(Double.valueOf(split[0]));
+            novoReciclador.getEndereco().setLng(Double.valueOf(split[1]));
+        } catch (ApiException | InterruptedException | IOException ex) {
+            Logger.getLogger(ControladorRegistrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
         acesso.inserir();
         novoReciclador = new Reciclador();
         tipoDePessoa = 0;
