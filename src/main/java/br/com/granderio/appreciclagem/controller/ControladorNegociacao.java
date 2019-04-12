@@ -7,6 +7,7 @@
 package br.com.granderio.appreciclagem.controller;
 
 import br.com.granderio.appreciclagem.dao.DAO;
+import br.com.granderio.appreciclagem.dao.DAOChatAplicacao;
 import br.com.granderio.appreciclagem.model.ChatAplicacao;
 import br.com.granderio.appreciclagem.model.Gerador;
 import br.com.granderio.appreciclagem.model.Negociacao;
@@ -38,7 +39,7 @@ public class ControladorNegociacao extends ControladorPrincipal<Negociacao> {
     
     public void updateNegociacao(){
         try{
-        DAO<ChatAplicacao> acesso = new DAO(new ChatAplicacao());
+        DAOChatAplicacao acesso = new DAOChatAplicacao(new ChatAplicacao());
         negociacao.getChat().setChatAplicacao(acesso.buscarMensagensChat(negociacao.getChat()));
         }catch(Exception e){
             UtilMensagens.mensagemError(e.getMessage());

@@ -96,8 +96,26 @@ public class DAOPedidoReciclagem extends DAO<PedidoReciclagem> {
         return retorno;
     }
     
+    
+    public List<PedidoReciclagem> listaDeMateriaisVendendo(){
+        List<PedidoReciclagem> list = null;
+        try {
+            s.getTransaction().begin();
+            Criteria criteria = s.createCriteria(PedidoReciclagem.class);
+            criteria.add(Restrictions.isNull("transportador"));
+            criteria.add(Restrictions.isNull("reciclador"));
+            list = criteria.list();
+             s.getTransaction().commit();
+        } catch (HibernateException ex) {
+            String mensagem = UtilError.getMensagemErro(ex);
+            System.err.println("Erro ao buscar registros (lista): " + mensagem);
+            s.getTransaction().rollback();
+        }
+        return (List<PedidoReciclagem>) list;
+    }
+    
     public boolean existeNegociacoes(PedidoReciclagem pedido){
-        List<Negociacao> retorno = null;
+          List<Negociacao> retorno = null;
           Query query = s.getNamedQuery("Negociacao.listarPorIdPedidoReciclagem");
          try {
             s.getTransaction().begin();  
@@ -114,6 +132,28 @@ public class DAOPedidoReciclagem extends DAO<PedidoReciclagem> {
             return true;
        
         return false;
+    }
+    
+    //Busca por ID
+    public PedidoReciclagem findPedidoReciclagem(long idPedido){
+         PedidoReciclagem retorno = null;
+         try {
+            s.getTransaction().begin();  
+            Criteria cri = s.createCriteria(PedidoReciclagem.class);
+            cri.add(Restrictions.eq("idPedidoReciclagem", idPedido));
+            List<PedidoReciclagem> list = cri.list();
+            if(list != null && list.size() > 0){
+                retorno = list.get(0);
+            }
+        } catch (HibernateException ex) {
+            String mensagem = UtilError.getMensagemErro(ex);
+            System.err.println("Erro ao buscar registros (lista): " + mensagem);
+            s.getTransaction().rollback();
+        } finally {
+            s.getTransaction().commit();
+            s.flush();
+        }
+        return retorno;
     }
       
 }

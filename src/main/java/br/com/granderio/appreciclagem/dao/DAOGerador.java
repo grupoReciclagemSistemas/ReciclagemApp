@@ -44,6 +44,23 @@ public class DAOGerador extends DAOPessoaJuridica {
         return ger;    
     }
     
+    public List<Gerador> listaGerador(){
+        List<Gerador> retorno = null;
+        try{
+            s.getTransaction().begin();
+            Criteria cri = s.createCriteria(Gerador.class);
+            retorno = (List<Gerador>) cri.list();
+        }catch(HibernateException ex){
+            String mensagem = UtilError.getMensagemErro(ex);
+            System.err.println("Erro ao buscar lista: " + mensagem);
+            s.getTransaction().rollback();
+        }finally{
+            s.getTransaction().commit();
+            s.flush();
+        }
+        return retorno;  
+    }
+    
     public List<PedidoReciclagem> materiaisVendendo(Gerador ger){
         List<PedidoReciclagem> list = null;
         try{

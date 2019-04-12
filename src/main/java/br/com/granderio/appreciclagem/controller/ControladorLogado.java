@@ -226,6 +226,12 @@ public class ControladorLogado implements Serializable {
         setAttribute("geradorLogado", null);
         return "index?faces-redirect=true";
     }
+    
+    public String deslogarAdmin(){
+        adminLogado = null;
+        setAttribute("adminLogado", null);
+        return "../index.xhtml?faces-redirect=true";
+    }
 
     public boolean veriRecicladorLogado() {
         if(recicladorLogado == null) {

@@ -71,7 +71,7 @@ and open the template in the editor.
                         </p:dataTable>
 
                     </p:tab>
-                    <p:tab title="NEGOCIAÇÕES">
+                    <p:tab title="NEGOCIAÇÕES" id="tabNegociacoesGerador">
                         <p:dataTable id="negociacoesGerador" var="negociacao" value="#{controladorLogado.geradorLogado.negociacoes}" style="width: 100%; margin-top: 2%;"
                                      emptyMessage="Nenhuma negociação encontrada!">
                             <p:column headerText="MATERIAL"> 
@@ -89,7 +89,7 @@ and open the template in the editor.
                             </p:column >
                             <p:column headerText="EXCLUIR">
                                 <p:commandButton value="Excluir" icon="fa fa-remove" action="#{controladorNegociacao.excluirNegociacao(negociacao)}"
-                                                 update="negociacoesGerador, messages" />
+                                                 update="tabNegociacoesGerador" immediate="true" />
                             </p:column>
                         </p:dataTable>
                     </p:tab>

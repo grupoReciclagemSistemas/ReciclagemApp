@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.Objects;
 import javax.faces.context.FacesContext;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -70,17 +71,30 @@ public class FiltroSeguranca implements Filter {
             }
         }
         
-        if(urlCompleta.contains("/minha_conta.xhtml")){
+        if(urlCompleta.contains("/minha_conta.xhtml") || urlCompleta.contains("/mapa.xhtml")){
             if(geradorLogado == null && recicladorLogado == null && transportadorLogado == null){
                 httpResponse.sendRedirect(urlPadrao + "/index.xhtml");
             }
         }
+        
+//        if(urlCompleta.contains("/chatNegociacao.xhtml")){
+//            if(geradorLogado == null && recicladorLogado == null && transportadorLogado == null){
+//                httpResponse.sendRedirect(urlPadrao + "/index.xhtml");
+//            }else if(recicladorLogado != null){
+//                long idChat = (long) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idChat");
+//                if(Objects.isNull(idChat)){
+//                    httpResponse.sendRedirect(urlPadrao + "/minha_conta.xhtml");
+//                }
+//            }
+//        }
         
         if(urlCompleta.contains("/registrar.xhtml")){
             if(geradorLogado != null || recicladorLogado != null || transportadorLogado != null){
                 httpResponse.sendRedirect(urlPadrao + "/minha_conta.xhtml");
             } 
         }
+        
+        
         
         //Faz o Filtro
         chain.doFilter(request, response);

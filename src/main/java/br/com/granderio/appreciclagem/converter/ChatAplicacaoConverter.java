@@ -8,6 +8,7 @@ package br.com.granderio.appreciclagem.converter;
 
 
 import br.com.granderio.appreciclagem.dao.DAO;
+import br.com.granderio.appreciclagem.dao.DAOChatAplicacao;
 import br.com.granderio.appreciclagem.model.ChatAplicacao;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -25,8 +26,8 @@ public class ChatAplicacaoConverter implements Converter {
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         ChatAplicacao retorno = new ChatAplicacao();
         long id = Long.valueOf(value);
-        DAO<ChatAplicacao> acesso = new DAO(retorno);
-        retorno = acesso.buscarChatAplicacao(id);
+        DAOChatAplicacao dao = new DAOChatAplicacao(retorno);
+        retorno = dao.buscarChatAplicacao(id);
         return retorno;
     }
 

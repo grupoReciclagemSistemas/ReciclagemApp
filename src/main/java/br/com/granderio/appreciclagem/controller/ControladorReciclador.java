@@ -6,7 +6,9 @@
 package br.com.granderio.appreciclagem.controller;
 
 import br.com.granderio.appreciclagem.dao.DAO;
+import br.com.granderio.appreciclagem.dao.DAOPedidoReciclagem;
 import br.com.granderio.appreciclagem.dao.DAOReciclador;
+import br.com.granderio.appreciclagem.dto.PedidoReciclagemDto;
 import br.com.granderio.appreciclagem.model.Gerador;
 import br.com.granderio.appreciclagem.model.Negociacao;
 import br.com.granderio.appreciclagem.model.PedidoReciclagem;
@@ -33,13 +35,15 @@ public class ControladorReciclador extends ControladorPrincipal<Reciclador> {
         
     }
    
-    public String entrarEmNegociacao(PedidoReciclagem pedido, Reciclador recicladorLogado){
+    public String entrarEmNegociacao(PedidoReciclagemDto pedidoDto, Reciclador recicladorLogado){
         DAOReciclador dao = new DAOReciclador(recicladorLogado);
 //        boolean negociacaoExiste = dao.verificarNegociacaoSeExiste(pedido, recicladorLogado);
 //        if(negociacaoExiste){
 //            UtilMensagens.mensagemAdvertencia("Você já está em Negociação para este pedido.");
 //            return "";
 //        }
+        DAOPedidoReciclagem daoPedido = new DAOPedidoReciclagem(new PedidoReciclagem());
+        PedidoReciclagem pedido = daoPedido.findPedidoReciclagem(pedidoDto.getIdPedido());
         Negociacao neg = new Negociacao(pedido, recicladorLogado, pedido.getGerador());
         
         //Adiciona na lista de Reciclador e Gerador a Negociacao criada

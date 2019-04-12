@@ -7,6 +7,7 @@ package br.com.granderio.appreciclagem.controller;
 
 import br.com.granderio.appreciclagem.dao.DAO;
 import br.com.granderio.appreciclagem.dao.DAOPedidoReciclagem;
+import br.com.granderio.appreciclagem.dto.PedidoReciclagemDto;
 import br.com.granderio.appreciclagem.model.Endereco;
 import br.com.granderio.appreciclagem.model.Material;
 import br.com.granderio.appreciclagem.model.PedidoReciclagem;
@@ -20,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -30,7 +32,9 @@ import javax.faces.bean.SessionScoped;
 public class ControladorPedidoReciclagem extends ControladorPrincipal<PedidoReciclagem> {
     
     private  DAOPedidoReciclagem dao = new DAOPedidoReciclagem(new PedidoReciclagem());
-    private List<PedidoReciclagem> pedidosVendendo = new ArrayList<PedidoReciclagem>();
+    private List<PedidoReciclagem> pedidosVendendo = new ArrayList<>();
+    
+    private List<PedidoReciclagemDto> pedidosDto = new ArrayList<>();
     
     private Material materialFiltro;
     private boolean listarPorCidadeEndereco = false;
@@ -75,7 +79,41 @@ public class ControladorPedidoReciclagem extends ControladorPrincipal<PedidoReci
         }else{
             pedidosVendendo = getDao().listarTodos();
         }
+        this.popularListaDto();
     }
+    
+    private void popularListaDto(){
+        if(pedidosVendendo != null && pedidosVendendo.size() > 0){
+            pedidosDto = new ArrayList<>();
+            for(PedidoReciclagem pedido : pedidosVendendo){            
+                    PedidoReciclagemDto dto = new PedidoReciclagemDto();
+                    dto.setCidade(pedido.getGerador().getEndereco().getCidade());
+                    dto.setIdPedido(pedido.getIdPedidoReciclagem());
+                    dto.setNomeMaterial(pedido.getItem().getMaterial().getNome());
+                    dto.setPesoTotal(pedido.getItem().getQuantidade());
+                    dto.setValorTotal(pedido.getValorTotal());
+                    dto.setLat(pedido.getGerador().getEndereco().getLat());
+                    dto.setLng(pedido.getGerador().getEndereco().getLng());
+                    if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("recicladorLogado") != null){
+                       Reciclador reci = (Reciclador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("recicladorLogado");
+                        dto.setDistancia(this.calculaDistancia(pedido.getGerador().getEndereco(), reci.getEndereco()));
+                    }
+                    pedidosDto.add(dto);
+            }       
+        }
+    }
+    
+    public String calculaDistancia(Endereco enderecoRemetente, Endereco enderecoDestinatario){
+        String endereco1 = enderecoRemetente.getLogradouro() + "," + enderecoRemetente.getNumero() + ',' + enderecoRemetente.getCidade();
+        String endereco2 = enderecoDestinatario.getLogradouro() + "," + enderecoDestinatario.getNumero() + "," + enderecoDestinatario.getCidade();
+        try {
+            return UtilMap.calcularDistancia(endereco1, endereco2);
+        } catch (ApiException | IOException | InterruptedException ex) {
+            Logger.getLogger(ControladorPedidoReciclagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+    
 
     /**
      * @return the pedidosVendendo
@@ -146,6 +184,20 @@ public class ControladorPedidoReciclagem extends ControladorPrincipal<PedidoReci
      */
     public void setCidadeFiltro(String cidadeFiltro) {
         this.cidadeFiltro = cidadeFiltro;
+    }
+
+    /**
+     * @return the pedidosDto
+     */
+    public List<PedidoReciclagemDto> getPedidosDto() {
+        return pedidosDto;
+    }
+
+    /**
+     * @param pedidosDto the pedidosDto to set
+     */
+    public void setPedidosDto(List<PedidoReciclagemDto> pedidosDto) {
+        this.pedidosDto = pedidosDto;
     }
     
 }

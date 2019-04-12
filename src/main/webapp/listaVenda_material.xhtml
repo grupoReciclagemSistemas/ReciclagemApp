@@ -53,29 +53,28 @@ and open the template in the editor.
                             </f:facet>
                         </p:panel>
 
-                        <p:dataTable id="dataListVendaMateriais" var="pedido" value="#{controladorPedidoReciclagem.pedidosVendendo}"
-                                     style="margin-left: 10%; width: 85%;" emptyMessage="Nenhum material vendendo!" >               
-                            <p:column headerText="NOME DO MATERIAL" style="font-size: 16px;">
-                                <h:outputText value="#{pedido.item.material.nome}" />
+                        <p:dataTable id="dataListVendaMateriais" var="pedido" value="#{controladorPedidoReciclagem.pedidosDto}"
+                                     style="margin-left: 10%; width: 85%;" emptyMessage="Nenhum material vendendo!" 
+                                     paginator="true">               
+                            <p:column headerText="NOME DO MATERIAL" style="font-size: 16px;" sortBy="#{pedido.nomeMaterial}">
+                                <h:outputText value="#{pedido.nomeMaterial}" />
                             </p:column>
 
-                            <p:column headerText="VALOR DO PEDIDO" style="font-size: 16px;">
+                            <p:column headerText="VALOR DO PEDIDO" style="font-size: 16px;" sortBy="#{pedido.valorTotal}">
                                 <h:outputText value="R$ #{pedido.valorTotal}" />
                             </p:column>
-
-                            <p:column headerText="PESO TOTAL (KG)" style="font-size: 16px;">
-                                <h:outputText value="#{pedido.item.quantidade}" />
+                            <p:column headerText="PESO TOTAL (KG)" style="font-size: 16px;" sortBy="#{pedido.pesoTotal}">
+                                <h:outputText value="#{pedido.pesoTotal}" />
                             </p:column>
-
-                            <p:column headerText="CIDADE DO GERADOR" style="font-size: 16px;">
-                                <h:outputText value="#{pedido.gerador.endereco.cidade}" />
+                            <p:column headerText="CIDADE DO GERADOR" style="font-size: 16px;" sortBy="#{pedido.cidade}">
+                                <h:outputText value="#{pedido.cidade}" />
                             </p:column>
-                            <p:column headerText="DISTÂNCIA" style="font-size: 16px;">
-                                <h:outputText value="#{controladorPedidoReciclagem.calcularDistancia(pedido, controladorLogado.recicladorLogado)}" />
+                            <p:column headerText="DISTÂNCIA" style="font-size: 16px;" sortBy="#{pedido.distancia}">
+                                <h:outputText value="#{pedido.distancia}" />
                             </p:column>
                              <p:column headerText="VER NO MAPA" style="font-size: 16px;">
                                 <p:commandButton icon="fa fa-map" value="MAPA" immediate="true" update="messages"
-                                                 action="mapa?faces-redirect=true" actionListener="#{controleMap.setCenterGeoMap(pedido.gerador.retornaLatLng())}" />
+                                                 action="mapa?faces-redirect=true" actionListener="#{controleMap.setCenterGeoMap(pedido.retornaLatLng())}" />
                             </p:column>
                             <p:column headerText="NEGOCIAR" style="font-size: 16px;">
                                 <p:commandButton icon="fa fa-money" value="Negociar" immediate="true" update="messages"
@@ -88,7 +87,8 @@ and open the template in the editor.
                      <h:panelGrid columns="2" style="width: 100%;" rendered="#{controladorLogado.recicladorLogado == null}">
  
                         <p:dataTable id="dataListVendaMateriais2" var="pedido" value="#{controladorPedidoReciclagem.pedidosVendendo}"
-                                     style=" margin-left: 4%; width: 95%; margin-top: 2%;" emptyMessage="Nenhum material vendendo!" >               
+                                     style=" margin-left: 4%; width: 95%; margin-top: 2%;" emptyMessage="Nenhum material vendendo!"
+                                     paginator="true">               
                             <p:column headerText="NOME DO MATERIAL" width="150px;" style="font-size: 16px;">
                                 <h:outputText value="#{pedido.item.material.nome}" />
                             </p:column>

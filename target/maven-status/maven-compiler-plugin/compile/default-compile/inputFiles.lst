@@ -8,6 +8,7 @@ C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-source
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\BuscaCliente.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\controller\ControladorTransportador.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\BuscaServicosAdicionaisAtivos.java
+C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\dao\DAOMaterial.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\BuscaPagamentoEntregaResponse.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\SolicitarPostagemScolResponse.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\AtualizaPagamentoNaEntrega.java
@@ -21,9 +22,11 @@ C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-source
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\IntegrarUsuarioScol.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\controller\ControladorChat.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\util\UtilError.java
+C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\dao\DAOItemPedido.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\model\PessoaJuridica.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\Pessoa.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\model\EstoqueGerador.java
+C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\dao\DAONegociacao.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\controller\ControleChatLazy.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\VerificaSeTodosObjetosCanceladosResponse.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\GerenteConta.java
@@ -58,6 +61,7 @@ C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-source
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\AtendeCliente.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\controller\ControladorAdmin.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\controller\ControladorNegociacao.java
+C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\dao\DAOChatAplicacao.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\ObterEmbalagemLRSResponse.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\PreListaPostagem.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\BuscaDataAtual.java
@@ -75,6 +79,7 @@ C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-source
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\model\MaterialLegislacao.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\ConsultaSRO.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\ValidaPlpResponse.java
+C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\dao\DAOEstoque.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\CalculaTarifaServico.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\ValidarPostagemSimultanea.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\StatusObjetoPostal.java
@@ -84,13 +89,16 @@ C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-source
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\GetStatusCartaoPostagem.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\controller\ControladorReciclador.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\CancelarObjeto.java
+C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\dao\DAOMaterialLegislacao.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\model\Negociacao.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\ServicoSigep.java
+C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\dao\DAOEstoqueGerador.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\StatusUsuario.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\BuscaDataAtualResponse.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\ConsultaCEP.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\SQLException.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\SolicitaPLP.java
+C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\dao\DAOEndereco.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\ConsultaSROResponse.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\FechaPlpResponse.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\converter\ChatAplicacaoConverter.java
@@ -134,7 +142,9 @@ C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-source
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\UsuarioInstalacao.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\GetStatusPLP.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\util\Consulta.java
+C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\dto\PedidoReciclagemDto.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\ConsultaCEPResponse.java
+C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\dao\DAOLegislacao.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\AtualizaRemessaAgrupadaResponse.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\ParametroMaster.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\SolicitaEtiquetasResponse.java
@@ -166,6 +176,7 @@ C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-source
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\SolicitaEtiquetas.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\FechaPlp.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\ValidaEtiquetaPLPResponse.java
+C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\dao\DAOChat.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\dao\DAOTransportador.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\target\generated-sources\jaxws-wsimport\br\com\correios\bsb\sigep\master\bean\cliente\Produto.java
 C:\Users\Rafael\Documents\NetBeansProjects\ReciclagemApp\src\main\java\br\com\granderio\appreciclagem\model\Endereco.java

@@ -7,6 +7,7 @@
 package br.com.granderio.appreciclagem.controller;
 
 import br.com.granderio.appreciclagem.dao.DAO;
+import br.com.granderio.appreciclagem.dao.DAOChat;
 import br.com.granderio.appreciclagem.dao.DAOGerador;
 import br.com.granderio.appreciclagem.dao.DAOReciclador;
 import br.com.granderio.appreciclagem.datamodel.ChatAplicacaoLazyDataModel;
@@ -77,7 +78,7 @@ public class ControleChatLazy {
         }
             ChatAplicacao novo = new ChatAplicacao();
             novo.setDataHora(new Date());
-            DAO<Chat> daoChat=  new DAO<Chat>(new Chat());
+            DAOChat daoChat=  new DAOChat(new Chat());
             long idChat = (long) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idChat");
             Chat chat = daoChat.buscarChat(idChat);
             novo.setChat(chat);
@@ -103,7 +104,7 @@ public class ControleChatLazy {
         }
             ChatAplicacao novo = new ChatAplicacao();
             novo.setDataHora(new Date());
-            DAO<Chat> daoChat=  new DAO<Chat>(new Chat());
+            DAOChat daoChat=  new DAOChat(new Chat());
             long idChat = (long) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idChat");
             Chat chat = daoChat.buscarChat(idChat);
             novo.setChat(chat);

@@ -16,8 +16,15 @@ and open the template in the editor.
           <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAXbHIRvrMpX-k18AXrJzgRY1Op3H0CNxo"></script>
     </h:head>
     <h:body>
+        
+        <ui:include src="/WEB-INF/menu.xhtml" />
+        
+        <p:panel id="panelMap" closable="false" menuTitle="Mapa de Consulta" header="Mapa de Consulta - Reclick"
+                 style="margin-top: 5%; margin-left: 5%; width: 90%;">
      
-        <p:gmap id="gmap" center="#{controleMap.centerGeoMap}" zoom="15" type="HYBRID" style="width:90%;height:400px"
-                    streetView="true" />
+        <p:gmap id="gmap" center="#{controleMap.centerGeoMap}" zoom="15" type="terrain" style="width:100%;height:400px"
+                    streetView="true"  />
+        
+        </p:panel>
     </h:body>
 </html>
