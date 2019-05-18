@@ -32,21 +32,8 @@ public class ChatAplicacaoLazyDataModel extends LazyDataModel<ChatAplicacao> {
       setRowCount(dao.getChatAplicacaoTotalCount());
       setPageSize(pageSize);
       return lista;
-  }
-    
-//    @Override
-//	public ChatAplicacao getRowData(String rowKey) {
-//	    List<ChatAplicacao> result = (List<ChatAplicacao>) getWrappedData();
-//	    Long idKey = Long.valueOf(rowKey);		      
-//	    Optional<ChatAplicacao> findFirst = result.stream().filter(obj -> obj.getIdChatAplicacao().equals(idKey)).findFirst();
-//	    if (findFirst.isPresent()) {
-//		ChatAplicacao obj = findFirst.get();
-//		return obj;
-//	    }
-//	    return null;
-//	}
-//    
-    
+    }
+     
     @Override
     public Object getRowKey(ChatAplicacao chat) {
         return chat.getIdChatAplicacao();

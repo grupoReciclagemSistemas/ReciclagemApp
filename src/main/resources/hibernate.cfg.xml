@@ -42,10 +42,10 @@ Contributor(s):
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/rec?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">reclcacc_admin</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/reclcacc_projetotcc</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
-    <property name="hibernate.connection.password">root</property>
+    <property name="hibernate.connection.password">-LN&amp;fSgyg4p6</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
@@ -69,5 +69,8 @@ Contributor(s):
     <mapping class="br.com.granderio.appreciclagem.model.Chat"/>
     <mapping class="br.com.granderio.appreciclagem.model.ChatAplicacao"/>
     <mapping class="br.com.granderio.appreciclagem.model.Administrador"/>
+    <mapping class="br.com.granderio.appreciclagem.model.NegociacaoTransportador"/>
+    <mapping class="br.com.granderio.appreciclagem.model.ChatTransportador"/>
+    <mapping class="br.com.granderio.appreciclagem.model.ChatAplicacaoTransportador"/>
   </session-factory>
 </hibernate-configuration>

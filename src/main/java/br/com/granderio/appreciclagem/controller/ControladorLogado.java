@@ -21,6 +21,8 @@ import br.com.granderio.appreciclagem.model.Transportador;
 import br.com.granderio.appreciclagem.util.UtilMensagens;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -230,7 +232,12 @@ public class ControladorLogado implements Serializable {
     public String deslogarAdmin(){
         adminLogado = null;
         setAttribute("adminLogado", null);
-        return "../index.xhtml?faces-redirect=true";
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8080/ReciclagemApp/");
+        } catch (IOException ex) {
+            Logger.getLogger(ControladorLogado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
     }
 
     public boolean veriRecicladorLogado() {

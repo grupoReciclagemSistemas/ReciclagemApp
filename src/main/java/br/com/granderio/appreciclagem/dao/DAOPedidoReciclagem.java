@@ -6,15 +6,19 @@
 
 package br.com.granderio.appreciclagem.dao;
 
+import br.com.granderio.appreciclagem.model.ChatAplicacao;
 import br.com.granderio.appreciclagem.model.Negociacao;
 import br.com.granderio.appreciclagem.model.PedidoReciclagem;
 import br.com.granderio.appreciclagem.model.Transportador;
 import br.com.granderio.appreciclagem.util.UtilError;
 import java.util.List;
+import java.util.Map;
+import javax.faces.context.FacesContext;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
+import org.primefaces.model.SortOrder;
 
 /**
  *
@@ -155,6 +159,40 @@ public class DAOPedidoReciclagem extends DAO<PedidoReciclagem> {
         }
         return retorno;
     }
+    
+        public List<PedidoReciclagem> buscarLazyModelPedidos(int first, int max, String sortField, SortOrder sortOrder, Map<String, Object> filters){   
+        List<PedidoReciclagem> lista = null;
+        Query query = null;
+         try{
+            s.getTransaction().begin();
+            query = s.getNamedQuery("Pedido.buscarTodos");
+            query.setFirstResult(first);
+            query.setMaxResults(max);
+            lista = query.list();
+            s.getTransaction().commit();
+            return lista;
+        }catch(HibernateException e){
+             System.out.println("Error: " + e.getMessage());
+             s.getTransaction().rollback();
+             return null;
+        }
+    }
+        
+    public int getPedidosTotalCount() {
+      List<PedidoReciclagem> lista = null;
+      Query query = null;
+         try{
+            s.getTransaction().begin();
+            query = s.getNamedQuery("Pedido.buscarTodos");
+            lista = query.list();
+            s.getTransaction().commit();
+            return lista.size();
+        }catch(HibernateException e){
+             System.out.println("Error: " + e.getMessage());
+             s.getTransaction().rollback();
+             return 0;
+        }
+  }
       
 }
 

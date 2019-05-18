@@ -13,27 +13,28 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Painel do Admin</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-        <ui:include src="/WEB-INF/menu_admin.xhtml" />
         
-        <h:form prependId="false" style="margin-top: 4%;">
+        <ui:include src="/WEB-INF/menu_admin.xhtml" />
+   
+        <h:form id="formGeral" prependId="false" style="margin-top: 4%;">
             <p:tabView prependId="false" > 
-                <p:tab title="Painel do Admin">
-                    <h:panelGrid columns="2" style="margin-top: 2%;">
+                <p:tab id="tabGeral" title="Painel do Admin">
+                    <h:panelGrid id="panelGridGeral" columns="2" style="margin-top: 2%;">
+                      
                     <p:menu>
                         <p:submenu label="LISTAGENS" style="background-color: green; color: white;" icon="fa fa-database">
-                            <p:menuitem value="Gerador" actionListener="#{controlePainel.mudarListagem(0)}" update="@form" icon="fa fa-user" />
-                            <p:menuitem value="Transportador" actionListener="#{controlePainel.mudarListagem(1)}" update="@form" icon="fa fa-user" />
-                            <p:menuitem value="Reciclador" actionListener="#{controlePainel.mudarListagem(2)}" update="@form" icon="fa fa-user" />
-                            <p:menuitem value="Material" actionListener="#{controlePainel.mudarListagem(3)}" update="@form" icon="fa fa-trash" />
-                            <p:menuitem value="Legislação" actionListener="#{controlePainel.mudarListagem(4)}" update="@form" icon="fa fa-list-alt" />
+                            <p:menuitem value="Gerador" actionListener="#{controlePainel.mudarListagem(0)}" update="formGeral" icon="fa fa-user" immediate="true" />
+                            <p:menuitem value="Transportador" actionListener="#{controlePainel.mudarListagem(1)}" update="formGeral" icon="fa fa-user" immediate="true" />
+                            <p:menuitem value="Reciclador" actionListener="#{controlePainel.mudarListagem(2)}" update="formGeral" icon="fa fa-user" immediate="true" />
+                            <p:menuitem value="Material" actionListener="#{controlePainel.mudarListagem(3)}" update="formGeral" icon="fa fa-trash" immediate="true" />
+                            <p:menuitem value="Legislação" actionListener="#{controlePainel.mudarListagem(4)}" update="formGeral" icon="fa fa-list-alt" immediate="true" />
                         </p:submenu>
-                        <p:submenu label="ADICIONAR" style="background-color: green; color: white;" icon="fa fa-plus-circle">
-                            <p:menuitem value="Material" action="material?faces-redirect=true" update="@form" icon="fa fa-plus-circle" />
-                            <p:menuitem value="Legislação" action="legislacao?faces-redirect=true" update="@form" icon="fa fa-plus-circle" />
-                            <p:menuitem value="MaterialLegislação" action="materialLegislacao?faces-redirect=true" update="@form" icon="fa fa-plus-circle" />
+                        <p:submenu label="ADICIONAR" style="background-color: green; color: white;" icon="fa fa-plus-circle" >
+                            <p:menuitem value="Material" action="material?faces-redirect=true" update="formGeral" icon="fa fa-plus-circle" immediate="true" />
+                            <p:menuitem value="Legislação" action="legislacao?faces-redirect=true" update="formGeral" icon="fa fa-plus-circle" immediate="true" />
+                            <p:menuitem value="MaterialLegislação" action="materialLegislacao?faces-redirect=true" update="formGeral" icon="fa fa-plus-circle" immediate="true" />
                         </p:submenu>
                     </p:menu>
         
@@ -174,8 +175,8 @@ and open the template in the editor.
             
                
         </h:form>
-        
+
         <ui:include src="dialogs/dialogMaterial.xhtml" />
-        
+
     </h:body>
 </html>

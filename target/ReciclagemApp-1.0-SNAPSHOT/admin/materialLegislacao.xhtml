@@ -24,7 +24,30 @@ and open the template in the editor.
             <p:messages id="messages" closable="false" showIcon="true" showDetail="true"  />
             <p:tabView prependId="false">
                 <p:tab title="Inserir Legislações em Material">
-                   
+                    <p:panelGrid id="panelGrid1" columns="1" style="width: 15%">
+                        <p:outputLabel value="Escolha um Material" />
+                        <p:selectOneMenu id="escolherMaterial" value="#{controladorMaterialLegi.materialEscolhido}"
+                                         converter="materialConverter" style="width: 90%">
+                            <f:selectItem itemLabel="-- SELECIONE --" itemValue="#{null}"/>
+                            <f:selectItems var="mat" value="#{controladorMaterial.lista()}" 
+                                           itemValue="#{mat}" itemLabel="#{mat.nome}"/>
+                            <p:ajax event="change" update="selectLegislacao" />
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="Escolha a Legislação:" />
+                        <p:selectOneMenu id="selectLegislacao" value="#{controladorMaterialLegi.legislacaoEscolhida}"
+                                          style="width: 100%" converter="legislacaoConverter" disabled="#{controladorMaterialLegi.materialEscolhido == null}">
+                            <f:selectItem itemLabel="-- SELECIONE --" itemValue="#{null}"/>
+                            <f:selectItems var="legi" value="#{controladorLegislacao.lista()}" 
+                                           itemValue="#{legi}" itemLabel="#{legi.codigo}"/>
+                            <p:ajax event="change" update="btn-add"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <h:panelGrid columns="2" style="margin-top: 1%">
+                        <p:commandButton id="btn-add" value="Relacionar" disabled="#{controladorMaterialLegi.legislacaoEscolhida == null}"
+                                         actionListener="#{controladorMaterialLegi.relacionarMatLegi()}" update="messages"/>
+                        <p:commandButton id="btn-clean" value="Limpar" actionListener="#{controladorMaterialLegi.limpar()}" update="panelGrid1, btn-add" />
+                    </h:panelGrid>
                 </p:tab>
             </p:tabView>
         </h:form>

@@ -28,7 +28,7 @@ import java.util.Arrays;
  */
 public class UtilMap {
     
-    private static final String CHAVE_GOOGLE = "";
+    private static final String CHAVE_GOOGLE = "AIzaSyAXbHIRvrMpX-k18AXrJzgRY1Op3H0CNxo";
     
     public static String codigoGeo(String endereco) throws ApiException, InterruptedException, IOException{
         GeoApiContext context = new GeoApiContext.Builder().apiKey(CHAVE_GOOGLE).build();

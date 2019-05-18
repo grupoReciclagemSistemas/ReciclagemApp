@@ -22,6 +22,8 @@ public class Legislacao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idLegislacao;
+    
+    
     private String codigo;
     
     //Descrição Completa
@@ -36,6 +38,14 @@ public class Legislacao implements Serializable {
     public Legislacao(){
         idLegislacao = -1;
         listaMatLegi = new ArrayList();
+    }
+    
+    public void addMatLegi(MaterialLegislacao matLegi){
+        if(!(listaMatLegi.contains(matLegi))){
+            listaMatLegi.add(matLegi);
+            return;
+        }
+        System.out.println("Ja esta na lista de MatLegi");
     }
 
     /**
@@ -107,5 +117,32 @@ public class Legislacao implements Serializable {
     public void setResumoDescricao(String resumoDescricao) {
         this.resumoDescricao = resumoDescricao;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + (int) (this.idLegislacao ^ (this.idLegislacao >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Legislacao other = (Legislacao) obj;
+        if (this.idLegislacao != other.idLegislacao) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }

@@ -50,6 +50,14 @@ public class Material implements Serializable {
         dataCadastro = new Date();
         listaMatLegi = new ArrayList();
     }
+    
+    public void addMatLegi(MaterialLegislacao matLegi){
+        if(!(listaMatLegi.contains(matLegi))){
+            listaMatLegi.add(matLegi);
+            return;
+        }
+        System.out.println("Ja esta na lista de MatLegi");
+    }
 
     /**
      * @return the idMaterial
@@ -148,5 +156,32 @@ public class Material implements Serializable {
     public void setListaMatLegi(List<MaterialLegislacao> listaMatLegi) {
         this.listaMatLegi = listaMatLegi;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + (int) (this.idMaterial ^ (this.idMaterial >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Material other = (Material) obj;
+        if (this.idMaterial != other.idMaterial) {
+            return false;
+        }
+        return true;
+    }
+    
+    
  
 }

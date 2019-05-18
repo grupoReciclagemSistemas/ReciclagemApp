@@ -8,6 +8,7 @@ package br.com.granderio.appreciclagem.controller;
 import br.com.granderio.appreciclagem.dao.DAO;
 import br.com.granderio.appreciclagem.dao.DAOPedidoReciclagem;
 import br.com.granderio.appreciclagem.dto.PedidoReciclagemDto;
+import br.com.granderio.appreciclagem.model.ChatAplicacao;
 import br.com.granderio.appreciclagem.model.Endereco;
 import br.com.granderio.appreciclagem.model.Material;
 import br.com.granderio.appreciclagem.model.PedidoReciclagem;
@@ -17,11 +18,13 @@ import com.google.maps.errors.ApiException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.model.LazyDataModel;
 
 /**
  *
@@ -39,7 +42,7 @@ public class ControladorPedidoReciclagem extends ControladorPrincipal<PedidoReci
     private Material materialFiltro;
     private boolean listarPorCidadeEndereco = false;
     private String cidadeFiltro;
-    
+
     public ControladorPedidoReciclagem(){
         super (new PedidoReciclagem());
         this.updateList();
@@ -199,5 +202,5 @@ public class ControladorPedidoReciclagem extends ControladorPrincipal<PedidoReci
     public void setPedidosDto(List<PedidoReciclagemDto> pedidosDto) {
         this.pedidosDto = pedidosDto;
     }
-    
+ 
 }

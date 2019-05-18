@@ -7,6 +7,7 @@
 package br.com.granderio.appreciclagem.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,7 @@ public class MaterialLegislacao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idMaterialLegislacao;
-    
+
     @ManyToOne
     private Material material;
     
@@ -74,6 +75,39 @@ public class MaterialLegislacao implements Serializable {
      */
     public void setLegislacao(Legislacao legislacao) {
         this.legislacao = legislacao;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + (int) (this.idMaterialLegislacao ^ (this.idMaterialLegislacao >>> 32));
+        hash = 43 * hash + Objects.hashCode(this.material);
+        hash = 43 * hash + Objects.hashCode(this.legislacao);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MaterialLegislacao other = (MaterialLegislacao) obj;
+        if (this.idMaterialLegislacao != other.idMaterialLegislacao) {
+            return false;
+        }
+        if (!Objects.equals(this.material, other.material)) {
+            return false;
+        }
+        if (!Objects.equals(this.legislacao, other.legislacao)) {
+            return false;
+        }
+        return true;
     }
 
 }
