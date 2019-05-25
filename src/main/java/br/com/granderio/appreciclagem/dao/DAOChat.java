@@ -14,10 +14,6 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
 public class DAOChat extends DAO<Chat> {
      
     public DAOChat(Chat chat){

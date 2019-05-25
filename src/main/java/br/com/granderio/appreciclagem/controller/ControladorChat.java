@@ -10,10 +10,7 @@ import br.com.granderio.appreciclagem.model.Chat;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+
 @ManagedBean(name="controladorChat")
 @SessionScoped
 public class ControladorChat extends ControladorPrincipal<Chat> {

@@ -16,10 +16,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+
 public class DAOMaterial extends DAO<Material> {
 
     public DAOMaterial(Material mat) {

@@ -10,10 +10,6 @@ import br.com.granderio.appreciclagem.model.Estoque;
 import br.com.granderio.appreciclagem.model.EstoqueGerador;
 
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
 public class DAOEstoqueGerador extends DAO<EstoqueGerador> {
 
     public DAOEstoqueGerador(EstoqueGerador est) {

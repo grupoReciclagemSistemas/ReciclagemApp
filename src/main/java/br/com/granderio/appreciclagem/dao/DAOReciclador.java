@@ -16,10 +16,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
 public class DAOReciclador extends DAOPessoaJuridica {
 
     public DAOReciclador(Reciclador reciclador) {

@@ -20,10 +20,7 @@ import org.primefaces.event.UnselectEvent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @author Rafael
- */
+
 @ManagedBean(name="controladorReciclador")
 @SessionScoped
 public class ControladorReciclador extends ControladorPrincipal<Reciclador> {

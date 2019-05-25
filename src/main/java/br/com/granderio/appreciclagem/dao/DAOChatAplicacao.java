@@ -20,10 +20,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.primefaces.model.SortOrder;
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+
 public class DAOChatAplicacao extends DAO<ChatAplicacao> {
      
     public DAOChatAplicacao(ChatAplicacao chat){

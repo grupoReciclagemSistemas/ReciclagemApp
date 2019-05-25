@@ -10,10 +10,7 @@ import br.com.granderio.appreciclagem.model.Administrador;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+
 @ManagedBean(name="controladorAdmin")
 @SessionScoped
 public class ControladorAdmin extends ControladorPrincipal<Administrador> {

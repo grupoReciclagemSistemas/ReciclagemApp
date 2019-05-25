@@ -9,10 +9,6 @@ import br.com.granderio.appreciclagem.model.ItemPedido;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @author Rafael
- */
 @ManagedBean(name="controladorItemPedido")
 @SessionScoped
 public class ControladorItemPedido extends ControladorPrincipal<ItemPedido> {

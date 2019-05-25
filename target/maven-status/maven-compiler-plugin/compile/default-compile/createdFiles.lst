@@ -153,6 +153,7 @@ br\com\granderio\appreciclagem\controller\ControladorMaterialLegislacao.class
 br\com\correios\bsb\sigep\master\bean\cliente\SolicitaXmlPlp.class
 br\com\correios\bsb\sigep\master\bean\cliente\TipoGerente.class
 br\com\granderio\appreciclagem\model\NegociacaoTransportador.class
+br\com\granderio\appreciclagem\util\Consulta$1.class
 br\com\granderio\appreciclagem\util\HibernateUtil.class
 br\com\correios\bsb\sigep\master\bean\cliente\FechaPlpResponse.class
 br\com\granderio\appreciclagem\dao\DAOReciclador.class

@@ -9,10 +9,6 @@ package br.com.granderio.appreciclagem.dao;
 import br.com.granderio.appreciclagem.model.ItemPedido;
 
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
 public class DAOItemPedido extends DAO<ItemPedido> {
 
     public DAOItemPedido(ItemPedido item) {

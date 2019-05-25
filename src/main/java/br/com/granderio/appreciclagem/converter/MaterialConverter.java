@@ -17,10 +17,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+
 @FacesConverter(value="materialConverter")
 public class MaterialConverter implements Converter {
 

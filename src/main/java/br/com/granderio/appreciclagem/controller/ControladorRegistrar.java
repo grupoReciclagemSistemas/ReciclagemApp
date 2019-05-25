@@ -26,10 +26,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 
-/**
- *
- * @author Rafael
- */
+
 @ManagedBean(name="controladorRegistrar")
 @SessionScoped
 public  class ControladorRegistrar implements Serializable {
@@ -65,36 +62,80 @@ public  class ControladorRegistrar implements Serializable {
     public void listenerRecicladorCEP(){  
         try {
             String cep = novoReciclador.getEndereco().getCep();
-            Endereco retornoDoWebService = Consulta.consultarCEP(cep);
+            Endereco retornoDoWebService = Consulta.restCEP(cep);
             novoReciclador.setEndereco(retornoDoWebService);
-        } catch (SQLException_Exception ex) {
+            
+          if(novoReciclador.getEndereco().getLogradouro() == null){
+            UtilMensagens.mensagemAdvertencia("O CEP digitado é Inválido. Digite um Válido!");
+            novoReciclador.getEndereco().setBairro(null);
+            novoReciclador.getEndereco().setCidade(null);
+            novoReciclador.getEndereco().setLogradouro(null);
+            novoReciclador.getEndereco().setUf(null);  
+            }
+          else{
+            UtilMensagens.mensagemInfo("CEP consultado com Sucesso!");
+          }
+          
+        } catch (Exception ex) {
             Logger.getLogger(ControladorRegistrar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SigepClienteException ex) {
-            Logger.getLogger(ControladorRegistrar.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            UtilMensagens.mensagemAdvertencia("O CEP digitado é Inválido. Digite um Válido!");
+            novoReciclador.getEndereco().setBairro(null);
+            novoReciclador.getEndereco().setCidade(null);
+            novoReciclador.getEndereco().setLogradouro(null);
+            novoReciclador.getEndereco().setUf(null); 
+            return;
+        } 
     }
     
     public void listenerGeradorCEP(){  
         try {
             String cep = novoGerador.getEndereco().getCep();
-            Endereco retornoDoWebService = Consulta.consultarCEP(cep);
+            Endereco retornoDoWebService = Consulta.restCEP(cep);
             novoGerador.setEndereco(retornoDoWebService);
-        } catch (SQLException_Exception ex) {
+            
+            if(novoGerador.getEndereco().getLogradouro() == null){
+            UtilMensagens.mensagemAdvertencia("O CEP digitado é Inválido. Digite um Válido!");
+            novoGerador.getEndereco().setBairro(null);
+            novoGerador.getEndereco().setCidade(null);
+            novoGerador.getEndereco().setLogradouro(null);
+            novoGerador.getEndereco().setUf(null);  
+            }
+          else{
+            UtilMensagens.mensagemInfo("CEP consultado com Sucesso!");
+          }       
+        } catch (Exception ex) {
             Logger.getLogger(ControladorRegistrar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SigepClienteException ex) {
-            Logger.getLogger(ControladorRegistrar.class.getName()).log(Level.SEVERE, null, ex);
+            UtilMensagens.mensagemAdvertencia("O CEP digitado é Inválido. Digite um Válido!");
+            novoGerador.getEndereco().setBairro(null);
+            novoGerador.getEndereco().setCidade(null);
+            novoGerador.getEndereco().setLogradouro(null);
+            novoGerador.getEndereco().setUf(null);   
         }
     }
     
     public void listenerTransportadorCEP(){  
         try {
             String cep = novoTransportador.getEndereco().getCep();
-            Endereco retornoDoWebService = Consulta.consultarCEP(cep);
+            Endereco retornoDoWebService = Consulta.restCEP(cep);
             novoTransportador.setEndereco(retornoDoWebService);
-        } catch (SQLException_Exception ex) {
+             if(novoTransportador.getEndereco().getLogradouro() == null){
+            UtilMensagens.mensagemAdvertencia("O CEP digitado é Inválido. Digite um Válido!");
+            novoTransportador.getEndereco().setBairro(null);
+            novoTransportador.getEndereco().setCidade(null);
+            novoTransportador.getEndereco().setLogradouro(null);
+            novoTransportador.getEndereco().setUf(null);  
+            }
+          else{
+            UtilMensagens.mensagemInfo("CEP consultado com Sucesso!");
+          }     
+             
+        } catch (Exception ex) {
             Logger.getLogger(ControladorRegistrar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SigepClienteException ex) {
-            Logger.getLogger(ControladorRegistrar.class.getName()).log(Level.SEVERE, null, ex);
+            UtilMensagens.mensagemAdvertencia("O CEP digitado é Inválido. Digite um Válido!");
+            novoReciclador.getEndereco().setBairro(null);
+            novoReciclador.getEndereco().setCidade(null);
+            novoReciclador.getEndereco().setLogradouro(null);
+            novoReciclador.getEndereco().setUf(null);       
         }
     }
     

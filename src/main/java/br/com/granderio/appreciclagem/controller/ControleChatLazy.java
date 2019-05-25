@@ -26,12 +26,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- * 
- * Classe para Controlar o LAZY MODEL DO CHAT
- */
+
 @ManagedBean(name="controleChatLazyModel")
 @SessionScoped
 public class ControleChatLazy {

@@ -11,10 +11,6 @@ import br.com.granderio.appreciclagem.model.Material;
 import br.com.granderio.appreciclagem.model.MaterialLegislacao;
 
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
 public class DAOMaterialLegislacao extends DAO<MaterialLegislacao> {
 
     public DAOMaterialLegislacao(MaterialLegislacao mat) {

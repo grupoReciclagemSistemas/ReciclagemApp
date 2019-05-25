@@ -20,10 +20,6 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.primefaces.model.SortOrder;
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
 public class DAOPedidoReciclagem extends DAO<PedidoReciclagem> {
 
     public DAOPedidoReciclagem(PedidoReciclagem pedido) {

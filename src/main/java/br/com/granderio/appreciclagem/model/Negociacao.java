@@ -48,9 +48,17 @@ public class Negociacao implements Serializable {
     
     @OneToOne
     private PedidoReciclagem pedido;
+
+    private String status;
+    
+    private boolean recicladorFinalizou;
+    
+    private boolean geradorFinalizou;
     
     public Negociacao(){
-        
+        geradorFinalizou = false;
+        recicladorFinalizou = false;
+        status = "Em Negociação";
     }
     
     public Negociacao(PedidoReciclagem pedido, Reciclador reciclador, Gerador gerador){
@@ -129,6 +137,48 @@ public class Negociacao implements Serializable {
      */
     public void setPedido(PedidoReciclagem pedido) {
         this.pedido = pedido;
+    }
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the recicladorFinalizou
+     */
+    public boolean isRecicladorFinalizou() {
+        return recicladorFinalizou;
+    }
+
+    /**
+     * @param recicladorFinalizou the recicladorFinalizou to set
+     */
+    public void setRecicladorFinalizou(boolean recicladorFinalizou) {
+        this.recicladorFinalizou = recicladorFinalizou;
+    }
+
+    /**
+     * @return the geradorFinalizou
+     */
+    public boolean isGeradorFinalizou() {
+        return geradorFinalizou;
+    }
+
+    /**
+     * @param geradorFinalizou the geradorFinalizou to set
+     */
+    public void setGeradorFinalozou(boolean geradorFinalizou) {
+        this.geradorFinalizou = geradorFinalizou;
     }
 
 }

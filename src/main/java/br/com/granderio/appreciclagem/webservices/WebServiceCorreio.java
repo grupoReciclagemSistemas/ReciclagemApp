@@ -7,13 +7,10 @@ package br.com.granderio.appreciclagem.webservices;
 
 import javax.jws.WebService;
 
-/**
- *
- * @author Rafael
- */
-@WebService(serviceName = "AtendeClienteService", portName = "AtendeClientePort", endpointInterface = "br.com.correios.bsb.sigep.master.bean.cliente.AtendeCliente", targetNamespace = "http://cliente.bean.master.sigep.bsb.correios.com.br/", wsdlLocation = "WEB-INF/wsdl/apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente.wsdl")
-public class WebServiceCorreio {
 
+@WebService(serviceName = "AtendeClienteService", portName = "AtendeClientePort", endpointInterface = "br.com.correios.bsb.sigep.master.bean.cliente.AtendeCliente", targetNamespace = "http://cliente.bean.master.sigep.bsb.correios.com.br/")
+public class WebServiceCorreio {
+    
     public java.util.List<br.com.correios.bsb.sigep.master.bean.cliente.ServicoAdicionalXML> buscaServicosAdicionaisAtivos(java.lang.String usuario, java.lang.String senha) throws br.com.correios.bsb.sigep.master.bean.cliente.SQLException_Exception, br.com.correios.bsb.sigep.master.bean.cliente.SigepClienteException {
         //TODO implement this method
         throw new UnsupportedOperationException("Not implemented yet.");

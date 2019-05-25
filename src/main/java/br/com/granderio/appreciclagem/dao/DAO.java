@@ -27,14 +27,7 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
-/**
- * Esta classe implementa um DAO (Data Access Object - Genérico) para conexão ao
- * Banco de Dados.
- *
- * @since 20/05/2016
- * @author Pablo Rangel <pablorangel at gmail.com>
- * @param <T> tipo genérico para as classes de modelo a serem persistidas.
- */
+
 public  class DAO<T> {
     
     private T objetoModelo;

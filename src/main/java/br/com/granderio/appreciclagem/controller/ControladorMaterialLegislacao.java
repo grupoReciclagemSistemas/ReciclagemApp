@@ -13,10 +13,7 @@ import br.com.granderio.appreciclagem.model.MaterialLegislacao;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+
 @ManagedBean(name="controladorMaterialLegi")
 @SessionScoped
 public class ControladorMaterialLegislacao extends ControladorPrincipal<MaterialLegislacao> {

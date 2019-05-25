@@ -6,18 +6,14 @@
 package br.com.granderio.appreciclagem.model;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.ArrayList;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -49,6 +45,9 @@ public abstract class PessoaJuridica implements Serializable {
     
     @OneToOne(mappedBy="pessoa", cascade = CascadeType.ALL)
     private Endereco endereco;
+    
+    @Column(nullable = true)
+    private String telefoneEmpresa;
 
     public PessoaJuridica(){
         idPessoaJuridica = -1;
@@ -156,5 +155,19 @@ public abstract class PessoaJuridica implements Serializable {
    
     public String retornaLatLng(){
         return getEndereco().getLat() + ", " + getEndereco().getLng();
+    }
+
+    /**
+     * @return the telefoneEmpresa
+     */
+    public String getTelefoneEmpresa() {
+        return telefoneEmpresa;
+    }
+
+    /**
+     * @param telefoneEmpresa the telefoneEmpresa to set
+     */
+    public void setTelefoneEmpresa(String telefoneEmpresa) {
+        this.telefoneEmpresa = telefoneEmpresa;
     }
 }

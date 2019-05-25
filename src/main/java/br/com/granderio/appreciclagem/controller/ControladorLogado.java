@@ -30,10 +30,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
-/**
- *
- * @author Rafael
- */
+
 @ManagedBean(name="controladorLogado")
 @SessionScoped
 public class ControladorLogado implements Serializable {
@@ -60,7 +57,7 @@ public class ControladorLogado implements Serializable {
     //Atributos para novo EstoqueGerador
     private Material materialEscolhido;
     private double quantidadeDoMaterialEscolhido = 0.0;
-     
+    
     public ControladorLogado() {
       tipoLogin = 1;
       login = "";
@@ -102,7 +99,7 @@ public class ControladorLogado implements Serializable {
             setAttribute("adminLogado", adminLogado);
             return "index?faces-redirect=true";
         }catch(Exception e){
-            UtilMensagens.mensagemError(e.getMessage());
+//            UtilMensagens.mensagemError(e.getMessage());
         }
         UtilMensagens.mensagemError("Login/Senha inválidos!");
         return "";
@@ -483,6 +480,36 @@ public class ControladorLogado implements Serializable {
     
     public void encerrarSessao(){   
          currentExternalContext().invalidateSession();
+    }
+    
+    public void updateGerador(){
+        try{
+            DAO<Gerador> dao = new DAO(geradorLogado);
+            dao.alterar();
+            UtilMensagens.mensagemInfo("Dados atualizados com sucesso!");
+        }catch(Exception e){
+            UtilMensagens.mensagemError("Error ao Atualizar: " + e.getMessage());
+        }
+    }
+    
+     public void updateReciclador(){
+        try{
+            DAO<Reciclador> dao = new DAO(recicladorLogado);
+            dao.alterar();
+            UtilMensagens.mensagemInfo("Dados atualizados com sucesso!");
+        }catch(Exception e){
+            UtilMensagens.mensagemError("Error ao Atualizar: " + e.getMessage());
+        }
+    }
+     
+      public void updateTransportador(){
+        try{
+            DAO<Transportador> dao = new DAO(transportadorLogado);
+            dao.alterar();
+            UtilMensagens.mensagemInfo("Dados atualizados com sucesso!");
+        }catch(Exception e){
+            UtilMensagens.mensagemError("Error ao Atualizar: " + e.getMessage());
+        }
     }
 
 }

@@ -19,10 +19,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+
 @FacesConverter(value="legislacaoConverter")
 public class LegislacaoConverter implements Converter {
 

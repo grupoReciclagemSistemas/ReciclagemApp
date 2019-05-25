@@ -9,10 +9,6 @@ package br.com.granderio.appreciclagem.dao;
 import br.com.granderio.appreciclagem.model.Estoque;
 
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
 public class DAOEstoque extends DAO<Estoque> {
 
     public DAOEstoque(Estoque est) {

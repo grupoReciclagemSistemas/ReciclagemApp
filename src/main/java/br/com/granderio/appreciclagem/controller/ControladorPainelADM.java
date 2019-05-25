@@ -16,10 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.context.RequestContext;
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+
 @ManagedBean(name="controlePainel")
 @SessionScoped
 public class ControladorPainelADM implements Serializable {

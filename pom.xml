@@ -123,15 +123,30 @@
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.25</version>
             </dependency>
-<!--            
+             
             <dependency>
-            <groupId>com.themesystem.reciclagem</groupId>
-            <artifactId>theme</artifactId>
-            <version>1</version>
-             <scope>system</scope>
-            <systemPath>C:\Users\Rafael\Desktop\custom-theme.jar</systemPath>
-</dependency>-->
+                <groupId>org.primefaces.themes</groupId>
+                <artifactId>bootstrap</artifactId>
+                <version>1.0.10</version>
+            </dependency>
             
+            <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>2.24.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>3.0.16.Final</version>
+        </dependency>
+
+     
     </dependencies>
 
     <build>
@@ -229,6 +244,8 @@
                 </configuration>
             </plugin>
         </plugins>
+        
+
     </build>
     <repositories>
         <repository>

@@ -19,7 +19,7 @@
     </servlet-mapping>
     <error-page>
         <error-code>404</error-code>
-        <location>/WEB-INF/errorpages/page-not-found.xhtml</location>
+        <location>/WEB-INF/page-not-found.xhtml</location>
     </error-page>
     <session-config>
         <session-timeout>
@@ -34,8 +34,9 @@
         <param-value>cerulean</param-value>
     </context-param>
     
-<!--        <context-param>  
+    <context-param>  
         <param-name>primefaces.THEME</param-name>  
-        <param-value>custom-theme</param-value>  
-    </context-param>-->
+        <param-value>bootstrap</param-value>  
+    </context-param>
+    
 </web-app>

@@ -17,7 +17,10 @@ public class UtilEmail {
     
     public static void enviarEmailSimples(String tituloDoEmail, String remetente, String mensagem) throws EmailException{
         SimpleEmail email = new SimpleEmail();
-        //Falta o HOST
+        email.setHostName("smtp.gmail.com");
+        email.setSmtpPort(465);
+        email.setSSL(true);
+        email.setTLS(true);
         email.setFrom(remetente);
         email.addTo("rafaelnunes.inf@gmail.com");
         email.setMsg(mensagem);

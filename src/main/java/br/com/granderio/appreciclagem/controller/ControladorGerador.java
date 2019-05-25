@@ -24,10 +24,6 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 
-/**
- *
- * @author Rafael
- */
 @ManagedBean(name="controladorGerador")
 @SessionScoped
 public class ControladorGerador extends ControladorPrincipal <Gerador> {
@@ -49,6 +45,11 @@ public class ControladorGerador extends ControladorPrincipal <Gerador> {
     private double quantidadeTotal;
     private double valorPorKG;
     private boolean vender;
+    
+    
+    //Atributos para UPDATE DE GERADOR
+    private String novaSenhaGerador;
+    
     
     public ControladorGerador(){
         super( new Gerador() );
@@ -414,6 +415,20 @@ public class ControladorGerador extends ControladorPrincipal <Gerador> {
      */
     public void setGeradorSelecionado(Gerador geradorSelecionado) {
         this.geradorSelecionado = geradorSelecionado;
+    }
+
+    /**
+     * @return the novaSenhaGerador
+     */
+    public String getNovaSenhaGerador() {
+        return novaSenhaGerador;
+    }
+
+    /**
+     * @param novaSenhaGerador the novaSenhaGerador to set
+     */
+    public void setNovaSenhaGerador(String novaSenhaGerador) {
+        this.novaSenhaGerador = novaSenhaGerador;
     }
     
 }

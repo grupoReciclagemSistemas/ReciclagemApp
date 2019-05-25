@@ -48,6 +48,18 @@ public class NegociacaoTransportador implements Serializable{
     
     @OneToOne
     private PedidoReciclagem pedido;
+    
+    private String status;
+    
+    private boolean recicladorFinalizou;
+    
+    private boolean transportadorFinalizou;
+    
+    public NegociacaoTransportador(){
+        transportadorFinalizou = false;
+        recicladorFinalizou = false;
+        status = "Em Negociação";
+    }
 
     /**
      * @return the idNegociacaoTransportador
@@ -117,6 +129,48 @@ public class NegociacaoTransportador implements Serializable{
      */
     public void setChatTransportador(ChatTransportador chatTransportador) {
         this.chatTransportador = chatTransportador;
+    }
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the recicladorFinalizou
+     */
+    public boolean isRecicladorFinalizou() {
+        return recicladorFinalizou;
+    }
+
+    /**
+     * @param recicladorFinalizou the recicladorFinalizou to set
+     */
+    public void setRecicladorFinalizou(boolean recicladorFinalizou) {
+        this.recicladorFinalizou = recicladorFinalizou;
+    }
+
+    /**
+     * @return the transportadorFinalizou
+     */
+    public boolean isTransportadorFinalizou() {
+        return transportadorFinalizou;
+    }
+
+    /**
+     * @param transportadorFinalizou the transportadorFinalizou to set
+     */
+    public void setTransportadorFinalizou(boolean transportadorFinalizou) {
+        this.transportadorFinalizou = transportadorFinalizou;
     }
 
 }

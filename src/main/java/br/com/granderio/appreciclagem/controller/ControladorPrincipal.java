@@ -13,11 +13,7 @@ import java.util.logging.Logger;
 
 
 
-/**
- *
- * @author Rafael
- * @param <T>
- */
+
 public abstract class ControladorPrincipal <T> implements Serializable {
     
     private T modelo;

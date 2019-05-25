@@ -13,10 +13,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+
 @ManagedBean(name="controladorLegislacao")
 @SessionScoped
 public class ControladorLegislacao extends ControladorPrincipal<Legislacao> {

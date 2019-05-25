@@ -14,11 +14,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.apache.commons.mail.EmailException;
 
-
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
 @ManagedBean(name="controladorEmail")
 @ViewScoped
 public class ControladorEmail {

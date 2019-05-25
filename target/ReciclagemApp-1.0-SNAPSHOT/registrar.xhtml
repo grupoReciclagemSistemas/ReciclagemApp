@@ -29,15 +29,28 @@
         
         <h:form prependId="false"  id="formEscolher" style="margin-top: 5%;">
             <center>
-                <p:panel header="Escolher Tipo para Cadastro" style="width: 30%;" rendered="#{controladorRegistrar.tipoDePessoa == 0}">
-                    <p:selectOneMenu value="#{controladorRegistrar.tipoDePessoa}" 
-                                     style="width: 50%; background-color: white; color: green; font-size: 17px;" >
-                        <p:ajax event="change" update="formRecicladorRegistrar, formGeradorRegistrar, formTransportadorRegistrar, formEscolher" process="@this" />
-                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" />
-                        <f:selectItem itemLabel="Reciclador" itemValue="1" />
-                        <f:selectItem itemLabel="Gerador" itemValue="2" />    
-                        <f:selectItem itemLabel="Transportador" itemValue="3" /> 
-                    </p:selectOneMenu>
+                <p:panel header="Escolher Tipo para Cadastro" style="width: 35%;" rendered="#{controladorRegistrar.tipoDePessoa == 0}">
+                    
+                  <p:row>
+                        <p:column colspan="4" rowspan="4">
+                            <p:commandButton value="RECICLADOR" action="#{controladorRegistrar.setTipoDePessoa(1)}"
+                                             update="formRecicladorRegistrar, formGeradorRegistrar, formTransportadorRegistrar, formEscolher" icon="fa fa-user"
+                                             style="background:#7cb342; margin-right: 20px; color: white; font-weight: bold;"/>
+                        </p:column>
+
+                      <p:column colspan="4" rowspan="4">
+                            <p:commandButton value="GERADOR" action="#{controladorRegistrar.setTipoDePessoa(2)}"
+                                             update="formRecicladorRegistrar, formGeradorRegistrar, formTransportadorRegistrar, formEscolher" icon="fa fa-user"
+                                             style="background:#7cb342; margin-right: 20px; color: white; font-weight: bold;"/>
+                        </p:column>
+
+                      <p:column colspan="4" rowspan="4">
+                            <p:commandButton value="TRANSPORTADOR" action="#{controladorRegistrar.setTipoDePessoa(3)}"
+                                             update="formRecicladorRegistrar, formGeradorRegistrar, formTransportadorRegistrar, formEscolher" icon="fa fa-user"
+                                             style="background:#7cb342; margin-right: 20px; color: white; font-weight: bold;"/>
+                        </p:column>
+                 </p:row>
+                    
                 </p:panel>
             </center>
         </h:form>
@@ -59,7 +72,11 @@
                                       style="width: 100%; background-color: white; color: green; font-size: 16px;"/>
                          
                          <p:outputLabel value="Telefone"  />
-                         <p:inputMask id="tel1" value="#{controladorRegistrar.novoReciclador.telefone}" required="true" mask="(99) 9999-9999"
+                         <p:inputMask id="tel1" value="#{controladorRegistrar.novoReciclador.telefone}" required="true" mask="(99) 99999-9999"
+                                      style="width: 100%; background-color: white; color: green; font-size: 16px;"/>
+                         
+                         <p:outputLabel value="Telefone da Empresa"  />
+                         <p:inputMask id="telEmpresarial1" value="#{controladorRegistrar.novoReciclador.telefoneEmpresa}" required="false" mask="(99) 9999-9999"
                                       style="width: 100%; background-color: white; color: green; font-size: 16px;"/>
                          
                          <p:outputLabel value="CNPJ"  />
@@ -70,27 +87,23 @@
                          <p:inputMask id="cep1" value="#{controladorRegistrar.novoReciclador.endereco.cep}" mask="99.999-999"
                                       style="width: 35%; background-color: white; color: green; font-size: 16px;"> 
                              <p:ajax event="change" listener="#{controladorRegistrar.listenerRecicladorCEP()}"
-                                     update="log1, bairro1, uf1, cidade1, comp1" />
+                                     update="log1, bairro1, uf1, cidade1, comp1, mensagensReciclador" />
                          </p:inputMask>
                          
                          <p:outputLabel value="Logradouro"  />
-                         <p:inputText id="log1" value="#{controladorRegistrar.novoReciclador.endereco.logradouro}" 
-                                      required="true" disabled="true"
+                         <p:outputLabel id="log1" value="#{controladorRegistrar.novoReciclador.endereco.logradouro}" 
                                       style="width: 100%; background-color: white; color: green; font-size: 18px; font-weight: bold;"/>
              
                          <p:outputLabel value="Cidade"  />
-                         <p:inputText id="cidade1" value="#{controladorRegistrar.novoReciclador.endereco.cidade}" 
-                                      required="true" disabled="true"
+                         <p:outputLabel id="cidade1" value="#{controladorRegistrar.novoReciclador.endereco.cidade}" 
                                       style="width: 100%; background-color: white; color: green; font-size: 18px; font-weight: bold;"/>
                          
                          <p:outputLabel value="Bairro"  />
-                         <p:inputText id="bairro1" value="#{controladorRegistrar.novoReciclador.endereco.bairro}" 
-                                      disabled="true" required="true"
+                         <p:outputLabel id="bairro1" value="#{controladorRegistrar.novoReciclador.endereco.bairro}" 
                                       style="width: 100%; background-color: white; color: green; font-size: 18px; font-weight: bold;"/>
                          
                          <p:outputLabel value="UF"  />
-                         <p:inputText id="uf1" value="#{controladorRegistrar.novoReciclador.endereco.uf}" 
-                                      disabled="true" required="true"
+                         <p:outputLabel id="uf1" value="#{controladorRegistrar.novoReciclador.endereco.uf}" 
                                       style="width: 100%; background-color: white; color: green; font-size: 18px; font-weight: bold;"/>
                          
                          <p:outputLabel value="NUMERO"  />
@@ -114,8 +127,9 @@
                     <center>
                     <p:messages id="mensagensReciclador"  />
                     <p:commandButton value="Registrar" action="#{controladorRegistrar.registrarReciclador()}" update="mensagensReciclador, messages"
-                                     style="font-size: 18px;" icon="fa fa-send"/>
-                    <p:commandButton value="Cancelar" style="margin-left: 4px; font-size: 18px;" action="#{controladorRegistrar.voltar()}" update="formRecicladorRegistrar, formEscolher" 
+                                     style="font-size: 18px; background:#7cb342; margin-right: 20px; color: white; font-weight: bold;" icon="fa fa-save"/>
+                    <p:commandButton value="Cancelar" style="margin-left: 4px; font-size: 18px; background:#7cb342; margin-right: 20px; color: white; font-weight: bold;" 
+                                     action="#{controladorRegistrar.voltar()}" update="formRecicladorRegistrar, formEscolher" 
                                      immediate="true" icon="fa fa-remove"/>
                     </center>
                 </f:facet>
@@ -140,7 +154,11 @@
                                       style="width: 100%; background-color: white; color: green; font-size: 16px;"/>
                          
                          <p:outputLabel value="Telefone"  />
-                         <p:inputMask id="tel2" value="#{controladorRegistrar.novoGerador.telefone}" required="true" mask="(99) 9999-9999"
+                         <p:inputMask id="tel2" value="#{controladorRegistrar.novoGerador.telefone}" required="true" mask="(99) 99999-9999"
+                                      style="width: 100%; background-color: white; color: green; font-size: 16px;"/>
+                         
+                         <p:outputLabel value="Telefone da Empresa"  />
+                         <p:inputMask id="telEmpresarial2" value="#{controladorRegistrar.novoGerador.telefoneEmpresa}" required="false" mask="(99) 9999-9999"
                                       style="width: 100%; background-color: white; color: green; font-size: 16px;"/>
                          
                          <p:outputLabel value="CNPJ"  />
@@ -151,27 +169,23 @@
                          <p:inputMask id="cep2" value="#{controladorRegistrar.novoGerador.endereco.cep}" mask="99.999-999"
                                       style="width: 35%; background-color: white; color: green; font-size: 16px;"> 
                              <p:ajax event="change" listener="#{controladorRegistrar.listenerGeradorCEP()}"
-                                     update="log2, bairro2, uf2, cidade2, comp2, cep2" />
+                                     update="log2, bairro2, uf2, cidade2, comp2, cep2, mensagensGerador" />
                          </p:inputMask>
                          
                          <p:outputLabel value="Logradouro"  />
-                         <p:inputText id="log2" value="#{controladorRegistrar.novoGerador.endereco.logradouro}" 
-                                      required="true" disabled="true"
+                         <p:outputLabel id="log2" value="#{controladorRegistrar.novoGerador.endereco.logradouro}" 
                                       style="width: 100%; background-color: white; color: green; font-size: 18px; font-weight: bold;"/>
              
                          <p:outputLabel value="Cidade"  />
-                         <p:inputText id="cidade2" value="#{controladorRegistrar.novoGerador.endereco.cidade}" 
-                                      required="true" disabled="true"
+                         <p:outputLabel id="cidade2" value="#{controladorRegistrar.novoGerador.endereco.cidade}" 
                                       style="width: 100%; background-color: white; color: green; font-size: 18px; font-weight: bold;"/>
                          
                          <p:outputLabel value="Bairro"  />
-                         <p:inputText id="bairro2" value="#{controladorRegistrar.novoGerador.endereco.bairro}" 
-                                      disabled="true" required="true"
+                         <p:outputLabel id="bairro2" value="#{controladorRegistrar.novoGerador.endereco.bairro}" 
                                       style="width: 100%; background-color: white; color: green; font-size: 18px; font-weight: bold;"/>
                          
                          <p:outputLabel value="UF"  />
-                         <p:inputText id="uf2" value="#{controladorRegistrar.novoGerador.endereco.uf}" 
-                                      disabled="true" required="true"
+                         <p:outputLabel id="uf2" value="#{controladorRegistrar.novoGerador.endereco.uf}" 
                                       style="width: 100%; background-color: white; color: green; font-size: 18px; font-weight: bold;"/>
                          
                          <p:outputLabel value="NUMERO"  />
@@ -189,8 +203,9 @@
                     <center>
                     <p:messages id="mensagensGerador"  />
                     <p:commandButton value="Registrar" action="#{controladorRegistrar.registrarGerador()}" update="mensagensGerador, messages"
-                                     style="font-size: 18px;" icon="fa fa-send"/>
-                    <p:commandButton value="Cancelar" style="margin-left: 4px; font-size: 18px;" action="#{controladorRegistrar.voltar()}" update="formGeradorRegistrar, formEscolher" 
+                                     style="font-size: 18px; background:#7cb342; margin-right: 20px; color: white; font-weight: bold;" icon="fa fa-save"/>
+                    <p:commandButton value="Cancelar" style="margin-left: 4px; font-size: 18px; background:#7cb342; margin-right: 20px; color: white; font-weight: bold;" 
+                                     action="#{controladorRegistrar.voltar()}" update="formGeradorRegistrar, formEscolher" 
                                      immediate="true" icon="fa fa-remove"/>
                     </center>
                 </f:facet>
@@ -215,7 +230,11 @@
                                       style="width: 100%; background-color: white; color: green; font-size: 16px;"/>
                          
                          <p:outputLabel value="Telefone"  />
-                         <p:inputMask id="tel3" value="#{controladorRegistrar.novoTransportador.telefone}" required="true" mask="(99) 9999-9999"
+                         <p:inputMask id="tel3" value="#{controladorRegistrar.novoTransportador.telefone}" required="true" mask="(99) 99999-9999"
+                                      style="width: 100%; background-color: white; color: green; font-size: 16px;"/>
+                         
+                          <p:outputLabel value="Telefone da Empresa"  />
+                         <p:inputMask id="telEmpresarial3" value="#{controladorRegistrar.novoTransportador.telefoneEmpresa}" required="false" mask="(99) 9999-9999"
                                       style="width: 100%; background-color: white; color: green; font-size: 16px;"/>
                          
                          <p:outputLabel value="CNPJ"  />
@@ -226,27 +245,23 @@
                          <p:inputMask id="cep3" value="#{controladorRegistrar.novoTransportador.endereco.cep}" mask="99.999-999"
                                       style="width: 35%; background-color: white; color: green; font-size: 16px;"> 
                              <p:ajax event="change" listener="#{controladorRegistrar.listenerTransportadorCEP()}"
-                                     update="log3, bairro3, uf3, cidade3, comp3, cep3" />
+                                     update="log3, bairro3, uf3, cidade3, comp3, cep3, mensagensTransportador" />
                          </p:inputMask>
                          
                          <p:outputLabel value="Logradouro"  />
-                         <p:inputText id="log3" value="#{controladorRegistrar.novoTransportador.endereco.logradouro}" 
-                                      required="true" disabled="true"
+                         <p:outputLabel id="log3" value="#{controladorRegistrar.novoTransportador.endereco.logradouro}" 
                                       style="width: 100%; background-color: white; color: green; font-size: 18px; font-weight: bold;"/>
              
                          <p:outputLabel value="Cidade"  />
-                         <p:inputText id="cidade3" value="#{controladorRegistrar.novoTransportador.endereco.cidade}" 
-                                      required="true" disabled="true"
+                         <p:outputLabel id="cidade3" value="#{controladorRegistrar.novoTransportador.endereco.cidade}" 
                                       style="width: 100%; background-color: white; color: green; font-size: 18px; font-weight: bold;"/>
                          
                          <p:outputLabel value="Bairro"  />
-                         <p:inputText id="bairro3" value="#{controladorRegistrar.novoTransportador.endereco.bairro}" 
-                                      disabled="true" required="true"
+                         <p:outputLabel id="bairro3" value="#{controladorRegistrar.novoTransportador.endereco.bairro}" 
                                       style="width: 100%; background-color: white; color: green; font-size: 18px; font-weight: bold;"/>
                          
                          <p:outputLabel value="UF"  />
-                         <p:inputText id="uf3" value="#{controladorRegistrar.novoTransportador.endereco.uf}" 
-                                      disabled="true" required="true"
+                         <p:outputLabel id="uf3" value="#{controladorRegistrar.novoTransportador.endereco.uf}" 
                                       style="width: 100%; background-color: white; color: green; font-size: 18px; font-weight: bold;"/>
                          
                          <p:outputLabel value="NUMERO"  />
@@ -264,8 +279,9 @@
                     <center>
                     <p:messages id="mensagensTransportador"  />
                     <p:commandButton value="Registrar" action="#{controladorRegistrar.registrarTransportador()}" update="mensagensTransportador, messages"
-                                     style="font-size: 18px;" icon="fa fa-send"/>
-                    <p:commandButton value="Cancelar" style="margin-left: 4px; font-size: 18px;" action="#{controladorRegistrar.voltar()}" update="formTransportadorRegistrar, formEscolher" 
+                                     style="font-size: 18px; background:#7cb342; margin-right: 20px; color: white; font-weight: bold;" icon="fa fa-save"/>
+                    <p:commandButton value="Cancelar" style="margin-left: 4px; font-size: 18px; background:#7cb342; margin-right: 20px; color: white; font-weight: bold;" 
+                                     action="#{controladorRegistrar.voltar()}" update="formTransportadorRegistrar, formEscolher" 
                                      immediate="true" icon="fa fa-remove"/>
                     </center>
                 </f:facet>

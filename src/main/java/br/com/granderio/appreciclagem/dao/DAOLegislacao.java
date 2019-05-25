@@ -15,11 +15,6 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
-
-/**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
 public class DAOLegislacao extends DAO<Legislacao> {
 
     public DAOLegislacao(Legislacao leg) {

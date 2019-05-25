@@ -14,10 +14,6 @@ import javax.faces.bean.SessionScoped;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
-/**
- *
- * @author Rafael
- */
 @ManagedBean(name="controladorTransportador")
 @SessionScoped
 public class ControladorTransportador extends ControladorPrincipal<Transportador> {

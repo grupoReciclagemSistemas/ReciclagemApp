@@ -17,10 +17,6 @@ import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
-/**
- *
- * @author Rafael
- */
 @ManagedBean(name="controladorMaterial")
 @SessionScoped
 public class ControladorMaterial extends ControladorPrincipal<Material> {
