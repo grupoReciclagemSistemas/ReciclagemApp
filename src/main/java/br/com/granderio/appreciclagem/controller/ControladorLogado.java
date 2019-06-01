@@ -67,6 +67,7 @@ public class ControladorLogado implements Serializable {
     }
     
     public void listenerIrNegociar(Negociacao negociacao){
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idNegociacao", negociacao.getIdNegociacao());
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idChat", negociacao.getChat().getIdChat());
     }
     

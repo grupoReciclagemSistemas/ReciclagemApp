@@ -29,7 +29,9 @@ import javax.persistence.NamedQuery;
                     + "n.pedido.idPedidoReciclagem = :id"),
     @NamedQuery(name="Negociacao.listarPorPedidoReciclador", 
             query="SELECT n FROM Negociacao n inner join n.gerador inner join n.reciclador inner join n.chat inner join n.pedido WHERE "
-                    + "n.pedido.idPedidoReciclagem = :id AND n.gerador.idPessoaJuridica = :idReciclador")
+                    + "n.pedido.idPedidoReciclagem = :id AND n.gerador.idPessoaJuridica = :idReciclador"),
+    @NamedQuery(name="Negociacao.listarPorPedidoRecicladorGerador", query="SELECT n FROM Negociacao n WHERE n.pedido.idPedidoReciclagem = :id1 AND "
+            + "n.gerador.idPessoaJuridica = :id2 AND n.reciclador.idPessoaJuridica = :id3")
 })
 public class Negociacao implements Serializable {
     

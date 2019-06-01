@@ -42,14 +42,16 @@ and open the template in the editor.
                                 <p:ajax event="change" />
                                 <f:selectItem itemLabel="Todas" itemValue="#{null}"  />
                                 <f:selectItem itemLabel="Sua Cidade" itemValue="#{controladorLogado.recicladorLogado.endereco.cidade}" />
-                                <f:selectItem itemLabel="Ordenar por Distancia" itemValue="#{null}" />
                             </p:selectOneRadio>
                             </h:panelGrid>  
                             <f:facet name="footer">
-                            <p:commandButton icon="fa fa-search" value="Filtrar" style="text-align: center;" immediate="true"
+                                
+                            <p:commandButton icon="fa fa-search" value="Filtrar" style="margin-right: 3px; background:#7cb342; 
+                                             margin-right: 20px; color: white; font-weight: bold; width: 60%;" immediate="true"
                                 action="#{controladorPedidoReciclagem.updateList()}" update="dataListVendaMateriais" />
 
-                            <p:commandButton icon="fa fa-remove"  value="Limpar"  style="text-align: center;" />
+                            <p:commandButton icon="fa fa-remove"  value="Limpar"  style="margin-right: 3px; background:#7cb342; 
+                                             margin-right: 20px; color: white; font-weight: bold; width: 60%;"  />
                             </f:facet>
                         </p:panel>
 
@@ -74,11 +76,15 @@ and open the template in the editor.
                             </p:column>
                              <p:column headerText="VER NO MAPA" style="font-size: 16px;">
                                 <p:commandButton icon="fa fa-map" value="MAPA" immediate="true" update="messages"
-                                                 action="mapa?faces-redirect=true" actionListener="#{controleMap.setCenterGeoMap(pedido.retornaLatLng())}" />
+                                                 action="mapa?faces-redirect=true" actionListener="#{controleMap.setCenterGeoMap(pedido.retornaLatLng())}"
+                                                 style="margin-right: 3px; background:#7cb342; 
+                                             margin-right: 20px; color: white; font-weight: bold;"/>
                             </p:column>
                             <p:column headerText="NEGOCIAR" style="font-size: 16px;">
                                 <p:commandButton icon="fa fa-money" value="Negociar" immediate="true" update="messages"
-                                                 action="#{controladorReciclador.entrarEmNegociacao(pedido, controladorLogado.recicladorLogado)}" />
+                                                 action="#{controladorReciclador.entrarEmNegociacao(pedido, controladorLogado.recicladorLogado)}"
+                                                 style="margin-right: 3px; background:#7cb342; 
+                                                        margin-right: 20px; color: white; font-weight: bold;"/>
                             </p:column>
                         </p:dataTable>
                         

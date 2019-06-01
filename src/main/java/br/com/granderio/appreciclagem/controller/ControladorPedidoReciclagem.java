@@ -84,20 +84,22 @@ public class ControladorPedidoReciclagem extends ControladorPrincipal<PedidoReci
     private void popularListaDto(){
         if(pedidosVendendo != null && pedidosVendendo.size() > 0){
             pedidosDto = new ArrayList<>();
-            for(PedidoReciclagem pedido : pedidosVendendo){            
-                    PedidoReciclagemDto dto = new PedidoReciclagemDto();
-                    dto.setCidade(pedido.getGerador().getEndereco().getCidade());
-                    dto.setIdPedido(pedido.getIdPedidoReciclagem());
-                    dto.setNomeMaterial(pedido.getItem().getMaterial().getNome());
-                    dto.setPesoTotal(pedido.getItem().getQuantidade());
-                    dto.setValorTotal(pedido.getValorTotal());
-                    dto.setLat(pedido.getGerador().getEndereco().getLat());
-                    dto.setLng(pedido.getGerador().getEndereco().getLng());
-                    if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("recicladorLogado") != null){
-                       Reciclador reci = (Reciclador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("recicladorLogado");
-                        dto.setDistancia(this.calculaDistancia(pedido.getGerador().getEndereco(), reci.getEndereco()));
-                    }
-                    pedidosDto.add(dto);
+            for(PedidoReciclagem pedido : pedidosVendendo){
+                if(pedido.getReciclador() == null){
+                        PedidoReciclagemDto dto = new PedidoReciclagemDto();
+                        dto.setCidade(pedido.getGerador().getEndereco().getCidade());
+                        dto.setIdPedido(pedido.getIdPedidoReciclagem());
+                        dto.setNomeMaterial(pedido.getItem().getMaterial().getNome());
+                        dto.setPesoTotal(pedido.getItem().getQuantidade());
+                        dto.setValorTotal(pedido.getValorTotal());
+                        dto.setLat(pedido.getGerador().getEndereco().getLat());
+                        dto.setLng(pedido.getGerador().getEndereco().getLng());
+                        if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("recicladorLogado") != null){
+                           Reciclador reci = (Reciclador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("recicladorLogado");
+                            dto.setDistancia(this.calculaDistancia(pedido.getGerador().getEndereco(), reci.getEndereco()));
+                        }
+                        pedidosDto.add(dto);
+                }
             }       
         }
     }

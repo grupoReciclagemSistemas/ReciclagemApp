@@ -6,6 +6,7 @@
 package br.com.granderio.appreciclagem.controller;
 
 import br.com.granderio.appreciclagem.dao.DAO;
+import br.com.granderio.appreciclagem.dao.DAONegociacao;
 import br.com.granderio.appreciclagem.dao.DAOPedidoReciclagem;
 import br.com.granderio.appreciclagem.dao.DAOReciclador;
 import br.com.granderio.appreciclagem.dto.PedidoReciclagemDto;
@@ -15,10 +16,12 @@ import br.com.granderio.appreciclagem.model.PedidoReciclagem;
 import br.com.granderio.appreciclagem.model.Reciclador;
 import br.com.granderio.appreciclagem.util.UtilMensagens;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 
 @ManagedBean(name="controladorReciclador")
@@ -33,12 +36,22 @@ public class ControladorReciclador extends ControladorPrincipal<Reciclador> {
     }
    
     public String entrarEmNegociacao(PedidoReciclagemDto pedidoDto, Reciclador recicladorLogado){
+        if(pedidoDto == null){
+            UtilMensagens.mensagemError("Pedido retornado Null, contate o Admin do Sistema.");
+            return "";
+        }
+         if(recicladorLogado == null){
+            UtilMensagens.mensagemError("RecicladorLogado Null, contate o Admin do Sistema.");
+            return "";
+        }
+        DAONegociacao daoNegociacao = new DAONegociacao(new Negociacao());
+        List<Negociacao> listaNegociacoes = daoNegociacao.buscarNegociacaoPorIdGeradorReciclador(pedidoDto, recicladorLogado);
+        if(listaNegociacoes != null && listaNegociacoes.size() > 0){
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "JÁ EXISTE UMA NEGOCIAÇÃO ENTRE VOCÊ E ESTE GERADOR.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            return "";
+        }
         DAOReciclador dao = new DAOReciclador(recicladorLogado);
-//        boolean negociacaoExiste = dao.verificarNegociacaoSeExiste(pedido, recicladorLogado);
-//        if(negociacaoExiste){
-//            UtilMensagens.mensagemAdvertencia("Você já está em Negociação para este pedido.");
-//            return "";
-//        }
         DAOPedidoReciclagem daoPedido = new DAOPedidoReciclagem(new PedidoReciclagem());
         PedidoReciclagem pedido = daoPedido.findPedidoReciclagem(pedidoDto.getIdPedido());
         Negociacao neg = new Negociacao(pedido, recicladorLogado, pedido.getGerador());
@@ -48,7 +61,7 @@ public class ControladorReciclador extends ControladorPrincipal<Reciclador> {
         pedido.getGerador().adicionarNegociacao(neg);
              
         // Insere a Negociacao
-        DAO<Negociacao> daoNegociacao = new DAO(neg);
+        daoNegociacao = new DAONegociacao(neg);
         daoNegociacao.inserir(); 
         
         // Atualiza Reciclador   
@@ -57,7 +70,9 @@ public class ControladorReciclador extends ControladorPrincipal<Reciclador> {
         // Atualiza o Gerador 
         DAO<Gerador> daoGerador = new DAO(pedido.getGerador());
         daoGerador.alterar();
-        return "minha_conta?faces-redirec=true";
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "A NEGOCIAÇÃO FOI INICIADA COM SUCESSO, CONSULTA SUA CONTA PARA ENVIAR MENSAGEM.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        return "";
     }
     
       public void onDoubleClick(SelectEvent event){

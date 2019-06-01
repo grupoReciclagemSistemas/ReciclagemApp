@@ -8,14 +8,18 @@ package br.com.granderio.appreciclagem.controller;
 
 import br.com.granderio.appreciclagem.dao.DAO;
 import br.com.granderio.appreciclagem.dao.DAOChatAplicacao;
+import br.com.granderio.appreciclagem.dao.DAONegociacao;
+import br.com.granderio.appreciclagem.dao.DAOPedidoReciclagem;
 import br.com.granderio.appreciclagem.model.ChatAplicacao;
 import br.com.granderio.appreciclagem.model.Gerador;
 import br.com.granderio.appreciclagem.model.Negociacao;
+import br.com.granderio.appreciclagem.model.PedidoReciclagem;
 import br.com.granderio.appreciclagem.model.Reciclador;
 import br.com.granderio.appreciclagem.util.UtilMensagens;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean(name="controladorNegociacao")
 @SessionScoped
@@ -156,6 +160,81 @@ public class ControladorNegociacao extends ControladorPrincipal<Negociacao> {
     public void excluirNegociacao(Negociacao neg){
         DAO<Negociacao> dao = new DAO<Negociacao>(neg);
         dao.excluir();
+    }
+    
+    public String retornaMensagemDoFinalizou(){
+        long idNegociacao = (long) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idNegociacao");
+        DAONegociacao daoNeg = new DAONegociacao(new Negociacao());
+        Negociacao negociacao = daoNeg.buscarNegociacao(idNegociacao);
+        if(!negociacao.isGeradorFinalizou() && !negociacao.isRecicladorFinalizou()){
+            return "Ninguém finalizou o pedido!";
+        }else if(!negociacao.isGeradorFinalizou() && negociacao.isRecicladorFinalizou() ){
+            return "Reciclador finalizou, aguardando Gerador para prosseguir com o Pedido!";
+      }else if(negociacao.isGeradorFinalizou() && !negociacao.isRecicladorFinalizou()){
+            return "Gerador finalizou, aguardando Reciclador para prosseguir com o Pedido!";
+      }else{
+          return "Está negociação foi concluída, vá para a próxima etapa!";
+      }
+    }
+    
+    public void finalizarPedido(String tipo){
+        long idNegociacao = (long) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idNegociacao");
+        DAONegociacao daoNeg = new DAONegociacao(new Negociacao());
+        Negociacao negociacao = daoNeg.buscarNegociacao(idNegociacao);
+        
+        if(tipo.equalsIgnoreCase("Gerador")){
+            if(negociacao.isGeradorFinalizou() && negociacao.isRecicladorFinalizou()){
+                UtilMensagens.mensagemAdvertencia("Essa Negociação já foi finalizada, vá para a próxima etapa.");
+            }else if(negociacao.isGeradorFinalizou()){
+                UtilMensagens.mensagemAdvertencia("Você já finalizou, aguarde o Reciclador.");
+            }else{
+                
+                negociacao.setGeradorFinalozou(true);
+                if(negociacao.isRecicladorFinalizou()){
+                    UtilMensagens.mensagemInfo("Ambos finalizaram, podem prosseguir com o Pedido.");
+                    PedidoReciclagem pedido = negociacao.getPedido();
+                    pedido.setReciclador(negociacao.getReciclador());
+                    DAOPedidoReciclagem daoPedido = new DAOPedidoReciclagem(pedido);
+                    daoPedido.alterar();      
+                }else{
+                    UtilMensagens.mensagemInfo("Finalizado com sucesso, aguarde o Reciclador agora.");
+                }
+                daoNeg = new DAONegociacao(negociacao);
+                daoNeg.alterar();
+            }
+        }else{
+            if(negociacao.isRecicladorFinalizou() && negociacao.isGeradorFinalizou()){
+               UtilMensagens.mensagemAdvertencia("Essa Negociação já foi finalizada, vá para a próxima etapa.");
+            }else if(negociacao.isRecicladorFinalizou()){
+                UtilMensagens.mensagemAdvertencia("Você já finalizou, aguarde o Gerador.");
+            }        
+            else{
+                negociacao.setRecicladorFinalizou(true);
+                if(negociacao.isGeradorFinalizou()){
+                    UtilMensagens.mensagemInfo("Ambos finalizaram, podem prosseguir com o Pedido.");
+                    PedidoReciclagem pedido = negociacao.getPedido();
+                    pedido.setReciclador(negociacao.getReciclador());
+                    DAOPedidoReciclagem daoPedido = new DAOPedidoReciclagem(pedido);
+                    daoPedido.alterar();    
+                }else{
+                    UtilMensagens.mensagemInfo("Finalizado com sucesso, aguarde o Gerador agora.");
+                }
+                daoNeg = new DAONegociacao(negociacao);
+                daoNeg.alterar();
+            }
+        }
+ 
+    }
+    
+    public boolean renderizaButtonFinalizar(){
+        long idNegociacao = (long) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idNegociacao");
+        DAONegociacao daoNeg = new DAONegociacao(new Negociacao());
+        Negociacao negociacao = daoNeg.buscarNegociacao(idNegociacao);
+        
+        if(negociacao.isGeradorFinalizou() && negociacao.isRecicladorFinalizou())
+            return false;
+        
+        return true;
     }
     
     

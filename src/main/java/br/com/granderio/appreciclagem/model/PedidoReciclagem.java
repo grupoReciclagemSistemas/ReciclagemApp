@@ -26,12 +26,12 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="Pedido.buscarTodos", query="SELECT p FROM PedidoReciclagem p"),
-    @NamedQuery(name="Pedido.buscarPedidosPorCidade", query="SELECT p FROM PedidoReciclagem p inner join p.gerador g where g.endereco.cidade = :cidade"),
+    @NamedQuery(name="Pedido.buscarTodos", query="SELECT p FROM PedidoReciclagem p WHERE p.reciclador IS NULL"),
+    @NamedQuery(name="Pedido.buscarPedidosPorCidade", query="SELECT p FROM PedidoReciclagem p inner join p.gerador g where g.endereco.cidade = :cidade AND p.reciclador IS NULL"),
     @NamedQuery(name="Pedido.buscarPedidosPorMaterialCidade", query="SELECT p FROM PedidoReciclagem p inner join p.gerador g inner join p.item i "
-            + "where g.endereco.cidade = :cidade"
+            + "where g.endereco.cidade = :cidade AND p.reciclador IS NULL"
             + " AND i.material.idMaterial = :idmaterial"),
-    @NamedQuery(name="Pedido.buscarPedidosPorMaterial", query="SELECT p FROM PedidoReciclagem p inner join p.item i where i.material.idMaterial = :idmaterial")
+    @NamedQuery(name="Pedido.buscarPedidosPorMaterial", query="SELECT p FROM PedidoReciclagem p inner join p.item i where i.material.idMaterial = :idmaterial AND p.reciclador IS NULL")
 })
 public class PedidoReciclagem implements Serializable {
     
