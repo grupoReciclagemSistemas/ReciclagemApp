@@ -11,19 +11,26 @@ and open the template in the editor.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
           
       xmlns:p="http://primefaces.org/ui">
+      
     <h:head>
-        <title>Consultar Distância - Reclick</title>
-          <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAXbHIRvrMpX-k18AXrJzgRY1Op3H0CNxo"></script>
+        <title>Página não encontrada</title>    
     </h:head>
+    
     <h:body>
-        
-        <ui:include src="/WEB-INF/menu.xhtml" />
-        
-        <p:panel id="panelMap" closable="false" menuTitle="Mapa de Consulta" header="Mapa de Consulta - Reclick"
-                 style="margin-top: 5%; margin-left: 5%; width: 90%;">
-     
-            <h3 style="color: red; background-color: white; text-align: center;"> PÁGINA NÃO ENCONTRADA. </h3>
-        
+           
+        <p:panel id="panelPageNotFound" closable="false" menuTitle="Reclick - Página não encontrada" header="Reclick - Página não encontrada"
+                 style="margin-top: 5%; margin-left: 35%; width: 30%; color: #7cb342; border-color: #7cb342;" styleClass="ui-panel-titlebar">
+                 
+             <div class="col-md-12" style="color: black; font-weight: bold; text-align: center;"> 
+             	<p:outputLabel value="A página que você tentou acessar não foi encontrada!"  />
+             </div>  
+             
+             <div class="col-md-12" style="text-align: center; margin-top: 2%;"> 
+             	<p:commandButton value="Voltar ao Inicio" action="../index?faces-redirect=true" 
+             	 	style="background:#7cb342; margin-right: 20px; color: white; font-weight: bold;" />
+             </div>
+                    
         </p:panel>
+        
     </h:body>
 </html>

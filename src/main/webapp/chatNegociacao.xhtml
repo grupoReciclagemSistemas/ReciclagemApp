@@ -24,15 +24,15 @@ and open the template in the editor.
                      style="margin-left: 10%; margin-top: 5%; margin-right: 10%;">
                 <p:dataTable id="dataTableReciclador" value="#{controleChatLazyModel.model}" var="msg" lazy="true" paginator="true" rows="15"
                              style="margin-top: 2%;" emptyMessage="Nenhuma mensagem ainda para este Chat!">
-                    <p:column headerText="REMETENTE" width="15%">
-                        <p:outputLabel value="#{controladorNegociacao.quemEnviouMsg(msg)}" />
+                    <p:column headerText="Pessoa" width="100px">
+                        <p:outputLabel value="#{controladorNegociacao.quemEnviouMsg(msg)}" style="color: #7cb342;" />
                     </p:column>
 
-                    <p:column headerText="MENSAGEM" width="20%">
+                    <p:column headerText="Mensagem" width="300px">
                         <p:outputLabel value="#{msg.mensagem}" />
                     </p:column>
 
-                    <p:column headerText="DATA/HORA" width="10%">
+                    <p:column headerText="Data" width="80px">
                         <p:outputLabel value="#{msg.dataHora}" />
                     </p:column>
                 </p:dataTable>

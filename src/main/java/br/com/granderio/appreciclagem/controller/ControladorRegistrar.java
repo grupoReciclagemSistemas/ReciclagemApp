@@ -5,8 +5,6 @@
  */
 package br.com.granderio.appreciclagem.controller;
 
-import br.com.correios.bsb.sigep.master.bean.cliente.SQLException_Exception;
-import br.com.correios.bsb.sigep.master.bean.cliente.SigepClienteException;
 import br.com.granderio.appreciclagem.dao.DAOGerador;
 import br.com.granderio.appreciclagem.dao.DAOReciclador;
 import br.com.granderio.appreciclagem.dao.DAOTransportador;

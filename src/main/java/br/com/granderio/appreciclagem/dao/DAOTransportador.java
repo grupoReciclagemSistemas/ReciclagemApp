@@ -14,30 +14,30 @@ import org.hibernate.criterion.Restrictions;
 
 public class DAOTransportador extends DAOPessoaJuridica {
 
-    public DAOTransportador(Transportador transportador) {
-        super(transportador);
-    }
-    
-    public Transportador logarTransportador(String email, String senha){
-        Transportador trans = null;
-        try{
-            s.getTransaction().begin();
-            Criteria cri = s.createCriteria(Transportador.class);
-            cri.add(Restrictions.eq("email", email));
-            cri.add(Restrictions.eq("senha", senha));
-            trans = (Transportador) cri.list().get(0);
-            if(cri.list().isEmpty()){
-                System.out.println("Vazio");
-            }
-        }catch(HibernateException ex){
-            String mensagem = UtilError.getMensagemErro(ex);
-            System.err.println("Erro ao logar: " + mensagem);
-            s.getTransaction().rollback();
-        }finally{
-            s.getTransaction().commit();
-            s.flush();
+	public DAOTransportador(Transportador transportador) {
+		super(transportador);
+	}
+
+	public Transportador logarTransportador(String email, String senha) {
+		Transportador trans = null;
+		try {
+			DAO.getS().getTransaction().begin();
+			Criteria cri = DAO.getS().createCriteria(Transportador.class);
+			cri.add(Restrictions.eq("email", email));
+			cri.add(Restrictions.eq("senha", senha));
+			trans = (Transportador) cri.list().get(0);
+			if (cri.list().isEmpty()) {
+				System.out.println("Vazio");
+			}
+			DAO.getS().getTransaction().commit();
+		} catch (HibernateException ex) {
+			String mensagem = UtilError.getMensagemErro(ex);
+			System.err.println("Erro ao logar: " + mensagem);
+			DAO.getS().getTransaction().rollback();
+		} finally {
+        	DAO.fecharSession();
         }
-        return trans;
-    }
+		return trans;
+	}
 
 }

@@ -18,63 +18,75 @@ import org.hibernate.criterion.Restrictions;
 
 public class DAOReciclador extends DAOPessoaJuridica {
 
-    public DAOReciclador(Reciclador reciclador) {
-        super(reciclador);
-    }
-    
-     public Reciclador logarReciclador(String email, String senha){
-        Reciclador reci = null;
-        try{
-            s.getTransaction().begin();
-            Criteria cri = s.createCriteria(Reciclador.class);
-            cri.add(Restrictions.eq("email", email));
-            cri.add(Restrictions.eq("senha", senha));
-            reci = (Reciclador) cri.list().get(0);
-            s.getTransaction().commit();
-        }catch(HibernateException ex){
-            String mensagem = UtilError.getMensagemErro(ex);
-            System.err.println("Erro ao logar: " + mensagem);
-            s.getTransaction().rollback();
+	public DAOReciclador(Reciclador reciclador) {
+		super(reciclador);
+	}
+
+	public Reciclador logarReciclador(String email, String senha) {
+		Reciclador reci = null;
+		try {
+			DAO.getS().getTransaction().begin();
+			Criteria cri = DAO.getS().createCriteria(Reciclador.class);
+			cri.add(Restrictions.eq("email", email));
+			cri.add(Restrictions.eq("senha", senha));
+			reci = (Reciclador) cri.list().get(0);
+			DAO.getS().getTransaction().commit();
+		} catch (HibernateException ex) {
+			String mensagem = UtilError.getMensagemErro(ex);
+			System.err.println("Erro ao logar: " + mensagem);
+			DAO.getS().getTransaction().rollback();
+		} finally {
+        	DAO.fecharSession();
         }
-        return reci;
-    }
-     
-     //Método que verifica se a Negociação com o mesmo Pedido e o Reciclador já existe, para não criar 2.
-     public boolean verificarNegociacaoSeExiste(PedidoReciclagem pedido, Reciclador reciclador){
-         List<Negociacao> list = null;
-         try{
-             Query query = s.getNamedQuery("Negociacao.listarPorPedidoReciclador").setLong("id", pedido.getIdPedidoReciclagem())
-                     .setLong("idReciclador", reciclador.getIdPessoaJuridica());
-             list = query.list();
-             s.getTransaction().commit();
-         }catch(Exception ex){
-             String mensagem = UtilError.getMensagemErro(ex);
-             System.err.println("Erro ao logar: " + mensagem);
-             s.getTransaction().rollback();
-         }
-         if(list.size() > 0 )
-             return true;
-         
-         return false;
-     }
-     
-     public Reciclador buscarReciclador(long id){
-         List<Reciclador> list = null;
-         try{
-             s.getTransaction().begin();
-             Criteria criteria = s.createCriteria(Reciclador.class);
-             criteria.add(Restrictions.eq("idPessoaJuridica", id));
-             list = criteria.list();
-             s.getTransaction().commit();
-         }catch(HibernateException ex){
-             String mensagem = UtilError.getMensagemErro(ex);
-             System.err.println("Erro ao logar: " + mensagem);
-             s.getTransaction().rollback();
-         }   
-         if(list.size() > 0 )
-             return list.get(0);
-         
-         return null;
-     }
+		return reci;
+	}
+
+	// Método que verifica se a Negociação com o mesmo Pedido e o Reciclador já
+	// existe, para não criar 2.
+	public boolean verificarNegociacaoSeExiste(PedidoReciclagem pedido, Reciclador reciclador) {
+		List<Negociacao> list = null;
+		Query query = null;
+		try {
+			DAO.getS().getTransaction().begin();
+			query = DAO.getS().getNamedQuery("Negociacao.listarPorPedidoReciclador")
+					.setLong("id", pedido.getIdPedidoReciclagem())
+					.setLong("idReciclador", reciclador.getIdPessoaJuridica());
+			list = query.list();
+			DAO.getS().getTransaction().commit();
+		} catch (Exception ex) {
+			String mensagem = UtilError.getMensagemErro(ex);
+			System.err.println("Erro ao logar: " + mensagem);
+			DAO.getS().getTransaction().rollback();
+		} finally {
+        	DAO.fecharSession();
+        }
+
+		if (list != null && list.size() > 0)
+			return true;
+
+		return false;
+	}
+
+	public Reciclador buscarReciclador(long id) {
+		List<Reciclador> list = null;
+		try {
+			DAO.getS().getTransaction().begin();
+			Criteria criteria = DAO.getS().createCriteria(Reciclador.class);
+			criteria.add(Restrictions.eq("idPessoaJuridica", id));
+			list = criteria.list();
+			DAO.getS().getTransaction().commit();
+		} catch (HibernateException ex) {
+			String mensagem = UtilError.getMensagemErro(ex);
+			System.err.println("Erro ao logar: " + mensagem);
+			DAO.getS().getTransaction().rollback();
+		} finally {
+        	DAO.fecharSession();
+        }
+
+		if (list != null && list.size() > 0)
+			return list.get(0);
+
+		return null;
+	}
 
 }

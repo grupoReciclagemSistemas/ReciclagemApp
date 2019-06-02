@@ -130,16 +130,20 @@
                 <version>1.0.10</version>
             </dependency>
             
-            <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.core</groupId>
-            <artifactId>jersey-client</artifactId>
-            <version>2.24.1</version>
-        </dependency>
+           <dependency>
+           	<groupId>javax.servlet</groupId>
+           	<artifactId>javax.servlet-api</artifactId>
+           	<version>3.0.1</version>
+     		</dependency>
+     		
+			<dependency>
+			    <groupId>javax.faces</groupId>
+			    <artifactId>javax.faces-api</artifactId>
+			    <version>2.3</version>
+			    <scope>provided</scope>
+			</dependency>
+
+
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-client</artifactId>
@@ -206,43 +210,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.jvnet.jax-ws-commons</groupId>
-                <artifactId>jaxws-maven-plugin</artifactId>
-                <version>2.3</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
-                                <wsdlFile>apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
-                            <staleFile>${project.build.directory}/jaxws/stale/AtendeCliente.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-AtendeCliente</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>javax.xml</groupId>
-                        <artifactId>webservices-api</artifactId>
-                        <version>2.0</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <sourceDestDir>${project.build.directory}/generated-sources/jaxws-wsimport</sourceDestDir>
-                    <xnocompile>true</xnocompile>
-                    <verbose>true</verbose>
-                    <extension>true</extension>
-                    <catalog>${basedir}/src/jax-ws-catalog.xml</catalog>
-                </configuration>
-            </plugin>
+        
         </plugins>
         
 

@@ -23,54 +23,52 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
+public class DAOPessoaJuridica extends DAO<PessoaJuridica> {
 
-public class DAOPessoaJuridica extends DAO<PessoaJuridica>{
-    
-    public DAOPessoaJuridica(PessoaJuridica pessoa) {
-        super(pessoa);
-    }
-    
-     public boolean verificarEmail(String email){
-        List<PessoaJuridica> lista = null;
-        try{
-            s.getTransaction().begin();
-            Criteria cri = s.createCriteria(PessoaJuridica.class);
-            cri.add(Restrictions.eq("email", email));         
-            lista = cri.list();
-        }catch(HibernateException ex){
-            String mensagem = UtilError.getMensagemErro(ex);
-            System.err.println("Erro ao buscar registros: " + mensagem);
-            s.getTransaction().rollback();
-        }finally{
-            s.getTransaction().commit();
-            s.flush();
+	public DAOPessoaJuridica(PessoaJuridica pessoa) {
+		super(pessoa);
+	}
+
+	public boolean verificarEmail(String email) {
+		List<PessoaJuridica> lista = null;
+		try {
+			DAO.getS().getTransaction().begin();
+			Criteria cri = DAO.getS().createCriteria(PessoaJuridica.class);
+			cri.add(Restrictions.eq("email", email));
+			lista = cri.list();
+			DAO.getS().getTransaction().commit();
+		} catch (HibernateException ex) {
+			String mensagem = UtilError.getMensagemErro(ex);
+			System.err.println("Erro ao buscar registros: " + mensagem);
+			DAO.getS().getTransaction().rollback();
+		} finally {
+        	DAO.fecharSession();
         }
-        
-        if(lista.size() > 0 ){
-            return true;
+
+		if (lista.size() > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean verificarCNPJ(String cnpj) {
+		List<PessoaJuridica> lista = null;
+		try {
+			DAO.getS().getTransaction().begin();
+			Criteria cri = DAO.getS().createCriteria(PessoaJuridica.class);
+			cri.add(Restrictions.eq("cnpj", cnpj));
+			lista = cri.list();
+			DAO.getS().getTransaction().commit();
+		} catch (HibernateException ex) {
+			System.err.println("Erro ao buscar registros: " + ex);
+			DAO.getS().getTransaction().rollback();
+		} finally {
+        	DAO.fecharSession();
         }
-         return false;   
-    }
-     
-      public boolean verificarCNPJ(String cnpj){
-        List<PessoaJuridica> lista = null;
-        try{
-            s.getTransaction().begin();
-            Criteria cri = s.createCriteria(PessoaJuridica.class);
-            cri.add(Restrictions.eq("cnpj", cnpj));         
-            lista = cri.list();
-        }catch(HibernateException ex){
-            System.err.println("Erro ao buscar registros: " + ex);
-            s.getTransaction().rollback();
-        }finally{
-            s.getTransaction().commit();
-            s.flush();
-        }
-        if(lista.size() > 0 ){
-            return true;
-        }
-         return false;   
-    }
-    
+		if (lista.size() > 0) {
+			return true;
+		}
+		return false;
+	}
+
 }
-

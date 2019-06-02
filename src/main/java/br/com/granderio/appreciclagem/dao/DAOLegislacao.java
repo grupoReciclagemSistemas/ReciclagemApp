@@ -17,28 +17,31 @@ import org.hibernate.criterion.Restrictions;
 
 public class DAOLegislacao extends DAO<Legislacao> {
 
-    public DAOLegislacao(Legislacao leg) {
-        super(leg);
-    }
-    
-    public Legislacao buscarLegislacao(long id){
-      List<Legislacao> lista = new ArrayList();
-        try {
-            s.getTransaction().begin();
-            Criteria criteria = s.createCriteria(Legislacao.class);
-            criteria.add(Restrictions.eq("idLegislacao", id));
-            lista = criteria.list();
-            s.getTransaction().commit();
-        } catch (HibernateException ex) {
-            String mensagem = UtilError.getMensagemErro(ex);
-            System.err.println("Erro ao buscar registros (lista): " + mensagem);
-            s.getTransaction().rollback();
-        }
-        if(lista.size() >0){
-            return lista.get(0);
-        }
-        return null;
-    }
-      
-}
+	public DAOLegislacao(Legislacao leg) {
+		super(leg);
+	}
 
+	public Legislacao buscarLegislacao(long id) {
+		List<Legislacao> lista = new ArrayList();
+		try {
+			DAO.getS().getTransaction().begin();
+			Criteria criteria = DAO.getS().createCriteria(Legislacao.class);
+			criteria.add(Restrictions.eq("idLegislacao", id));
+			lista = criteria.list();
+			DAO.getS().getTransaction().commit();
+		} catch (HibernateException ex) {
+			String mensagem = UtilError.getMensagemErro(ex);
+			System.err.println("Erro ao buscar registros (lista): " + mensagem);
+			DAO.getS().getTransaction().rollback();
+		} finally {
+        	DAO.fecharSession();
+        }
+
+		if (lista.size() > 0) {
+			return lista.get(0);
+		}
+
+		return null;
+	}
+
+}

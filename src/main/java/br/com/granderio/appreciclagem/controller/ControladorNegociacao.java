@@ -15,6 +15,7 @@ import br.com.granderio.appreciclagem.model.Gerador;
 import br.com.granderio.appreciclagem.model.Negociacao;
 import br.com.granderio.appreciclagem.model.PedidoReciclagem;
 import br.com.granderio.appreciclagem.model.Reciclador;
+import br.com.granderio.appreciclagem.util.UtilError;
 import br.com.granderio.appreciclagem.util.UtilMensagens;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
@@ -158,8 +159,13 @@ public class ControladorNegociacao extends ControladorPrincipal<Negociacao> {
     }
     
     public void excluirNegociacao(Negociacao neg){
-        DAO<Negociacao> dao = new DAO<Negociacao>(neg);
-        dao.excluir();
+    	try {
+	        DAO<Negociacao> dao = new DAO<Negociacao>(neg);
+	        dao.excluir();
+	        UtilMensagens.mensagemInfo("A negociação foi excluída com sucesso!");
+    	}catch(Exception e) {
+    		UtilMensagens.mensagemError("Error: " + UtilError.getUltimaExcecao(e));
+    	}
     }
     
     public String retornaMensagemDoFinalizou(){

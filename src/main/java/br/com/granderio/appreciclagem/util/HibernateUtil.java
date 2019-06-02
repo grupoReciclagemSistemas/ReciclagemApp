@@ -8,6 +8,7 @@ package br.com.granderio.appreciclagem.util;
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
@@ -36,9 +37,18 @@ public class HibernateUtil {
         if(session == null){
             session = HibernateUtil.getSessionFactory().openSession();
         }
+        
+        if(!session.isOpen()) {
+        	session = HibernateUtil.getSessionFactory().openSession();
+        }
+        
+        if(session.isOpen()) {
+        	session = 	HibernateUtil.getSessionFactory().getCurrentSession();
+        }
+        
      return session;
     }
-  
+    
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }

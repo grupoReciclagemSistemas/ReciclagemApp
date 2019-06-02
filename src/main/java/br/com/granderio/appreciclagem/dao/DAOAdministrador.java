@@ -23,18 +23,18 @@ public class DAOAdministrador extends DAO<Administrador> {
     public Administrador logarAdmin(String login, String senha){
         Administrador adm = null;
         try{
-            s.getTransaction().begin();
-            Criteria cri = s.createCriteria(Administrador.class);
+            DAO.getS().getTransaction().begin();
+            Criteria cri = DAO.getS().createCriteria(Administrador.class);
             cri.add(Restrictions.eq("login", login));
             cri.add(Restrictions.eq("senha", senha));
             adm = (Administrador) cri.list().get(0);
+            DAO.getS().getTransaction().commit();
         }catch(HibernateException ex){
             String mensagem = UtilError.getMensagemErro(ex);
             System.err.println("Erro ao logar: " + mensagem);
-            s.getTransaction().rollback();
-        }finally{
-            s.getTransaction().commit();
-            s.flush();
+            DAO.getS().getTransaction().rollback();
+        }finally {
+        	DAO.fecharSession();
         }
         return adm;  
     }

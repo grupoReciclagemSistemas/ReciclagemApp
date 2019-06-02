@@ -5,26 +5,26 @@
  */
 package br.com.granderio.appreciclagem.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import com.google.maps.errors.ApiException;
+
 import br.com.granderio.appreciclagem.dao.DAO;
 import br.com.granderio.appreciclagem.dao.DAOPedidoReciclagem;
 import br.com.granderio.appreciclagem.dto.PedidoReciclagemDto;
-import br.com.granderio.appreciclagem.model.ChatAplicacao;
 import br.com.granderio.appreciclagem.model.Endereco;
 import br.com.granderio.appreciclagem.model.Material;
 import br.com.granderio.appreciclagem.model.PedidoReciclagem;
 import br.com.granderio.appreciclagem.model.Reciclador;
 import br.com.granderio.appreciclagem.util.UtilMap;
-import com.google.maps.errors.ApiException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import org.primefaces.model.LazyDataModel;
 
 @ManagedBean(name="controladorPedidoReciclagem")
 @SessionScoped

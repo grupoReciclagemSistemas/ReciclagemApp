@@ -15,46 +15,51 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
-
-
 public class DAOMaterial extends DAO<Material> {
 
-    public DAOMaterial(Material mat) {
-        super(mat);
-    }
-      
-    
-    public int quantidadeDeMateriais(){
-    List<Material> lista = null;       
-      try{     
-        s.getTransaction().begin();       
-        Criteria cri = s.createCriteria(Material.class);
-        lista = cri.list();
-        s.getTransaction().commit();
-      }catch(HibernateException ex){
-        System.err.println("Erro ao buscar lista de Material: " + ex);
-            s.getTransaction().rollback();
-        }
-    return lista.size();
-    }
-    
-    public Material buscarMaterial(long id){
-      List<Material> lista = new ArrayList();
-        try {
-            s.getTransaction().begin();
-            Criteria criteria = s.createCriteria(Material.class);
-            criteria.add(Restrictions.eq("idMaterial", id));
-            lista = criteria.list();
-            s.getTransaction().commit();
-        } catch (HibernateException ex) {
-            String mensagem = UtilError.getMensagemErro(ex);
-            System.err.println("Erro ao buscar registros (lista): " + mensagem);
-            s.getTransaction().rollback();
-        }
-        if(lista.size() >0){
-            return lista.get(0);
-        }
-        return null;
-    }
-}
+	public DAOMaterial(Material mat) {
+		super(mat);
+	}
 
+	public int quantidadeDeMateriais() {
+		List<Material> lista = null;
+		try {
+			DAO.getS().getTransaction().begin();
+			Criteria cri = DAO.getS().createCriteria(Material.class);
+			lista = cri.list();
+			DAO.getS().getTransaction().commit();
+		} catch (HibernateException ex) {
+			System.err.println("Erro ao buscar lista de Material: " + ex);
+			DAO.getS().getTransaction().rollback();
+		} finally {
+        	DAO.fecharSession();
+        }
+		
+		if (lista != null)
+			return lista.size();
+
+		return 0;
+	}
+
+	public Material buscarMaterial(long id) {
+		List<Material> lista = new ArrayList();
+		try {
+			DAO.getS().getTransaction().begin();
+			Criteria criteria = DAO.getS().createCriteria(Material.class);
+			criteria.add(Restrictions.eq("idMaterial", id));
+			lista = criteria.list();
+			DAO.getS().getTransaction().commit();
+		} catch (HibernateException ex) {
+			String mensagem = UtilError.getMensagemErro(ex);
+			System.err.println("Erro ao buscar registros (lista): " + mensagem);
+			DAO.getS().getTransaction().rollback();
+		} finally {
+        	DAO.fecharSession();
+        }
+		
+		if (lista.size() > 0) {
+			return lista.get(0);
+		}
+		return null;
+	}
+}

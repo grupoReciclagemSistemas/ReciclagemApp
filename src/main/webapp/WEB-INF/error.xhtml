@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+          
+      xmlns:p="http://primefaces.org/ui">
+      
+    <h:head>
+        <title>Reclick - Error</title>    
+    </h:head>
+    
+    <h:body>
+           
+        <p:panel id="panelError" closable="false" menuTitle="Reclick - Error" header="Reclick - Error"
+                 style="margin-top: 5%; margin-left: 30%; width: 40%; color: #7cb342; border-color: red;">
+                 
+             <div class="col-md-12" style="color: black; font-weight: bold; text-align: center;"> 
+             	<p:outputLabel value="Um erro inesperado ocorreu, volte ao menu inicial e tente novamente!"  />
+             </div>  
+             
+             <div class="col-md-12" style="text-align: center; margin-top: 2%;"> 
+             	<p:commandButton value="Voltar ao Inicio" action="../index?faces-redirect=true" 
+             	 	style="background:red; margin-right: 20px; color: white; font-weight: bold;" />
+             </div>
+                    
+        </p:panel>
+        
+    </h:body>
+</html>

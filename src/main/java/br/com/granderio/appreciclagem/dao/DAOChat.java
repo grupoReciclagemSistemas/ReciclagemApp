@@ -23,16 +23,19 @@ public class DAOChat extends DAO<Chat> {
     public Chat buscarChat(long idChat){
       List<Chat> lista = new ArrayList();
         try {
-            s.getTransaction().begin();
-            Criteria criteria = s.createCriteria(Chat.class);
+        	DAO.getS().getTransaction().begin();
+            Criteria criteria = DAO.getS().createCriteria(Chat.class);
             criteria.add(Restrictions.eq("idChat", idChat));
             lista = criteria.list();
-            s.getTransaction().commit();
+            DAO.getS().getTransaction().commit();
         } catch (HibernateException ex) {
             String mensagem = UtilError.getMensagemErro(ex);
             System.err.println("Erro ao buscar registros (lista): " + mensagem);
-            s.getTransaction().rollback();
+            DAO.getS().getTransaction().rollback();
+        }finally {
+        	DAO.fecharSession();
         }
+        
         if(lista.size() >0){
             return lista.get(0);
         }
