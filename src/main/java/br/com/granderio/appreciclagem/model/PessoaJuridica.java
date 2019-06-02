@@ -107,7 +107,7 @@ public abstract class PessoaJuridica implements Serializable {
      * @param senha the senha to set
      */
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.senha = criptografarSenha(senha);
     }
 
     /**
@@ -170,4 +170,29 @@ public abstract class PessoaJuridica implements Serializable {
     public void setTelefoneEmpresa(String telefoneEmpresa) {
         this.telefoneEmpresa = telefoneEmpresa;
     }
+    
+    // Método de Criptografia para as Senhas dos Clientes.
+    private String criptografarSenha(String senha) {
+        MessageDigest mDigest;
+        try {
+            mDigest = MessageDigest.getInstance("MD5");
+            byte[] valorMD5 = mDigest.digest(senha.getBytes("UTF-8"));
+            StringBuffer sb = new StringBuffer();
+            for (byte b : valorMD5) {
+                sb.append(Integer.toHexString((b & 0xFF) | 0x100).substring(1, 3));
+            }
+
+            return sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
 }
