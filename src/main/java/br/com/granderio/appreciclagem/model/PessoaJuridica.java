@@ -6,6 +6,10 @@
 package br.com.granderio.appreciclagem.model;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,14 +21,20 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 
 /**
- *
- * @author Rafael
- */
+*
+* Rafael Nunes - Version 1.0 - Desenvolvedor Java
+*/
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class PessoaJuridica implements Serializable {
     
-    @Id
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long idPessoaJuridica;
     
@@ -194,5 +204,69 @@ public abstract class PessoaJuridica implements Serializable {
             return null;
         }
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
+		result = prime * result + (int) (idPessoaJuridica ^ (idPessoaJuridica >>> 32));
+		result = prime * result + ((razaoSocial == null) ? 0 : razaoSocial.hashCode());
+		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
+		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
+		result = prime * result + ((telefoneEmpresa == null) ? 0 : telefoneEmpresa.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PessoaJuridica other = (PessoaJuridica) obj;
+		if (cnpj == null) {
+			if (other.cnpj != null)
+				return false;
+		} else if (!cnpj.equals(other.cnpj))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (endereco == null) {
+			if (other.endereco != null)
+				return false;
+		} else if (!endereco.equals(other.endereco))
+			return false;
+		if (idPessoaJuridica != other.idPessoaJuridica)
+			return false;
+		if (razaoSocial == null) {
+			if (other.razaoSocial != null)
+				return false;
+		} else if (!razaoSocial.equals(other.razaoSocial))
+			return false;
+		if (senha == null) {
+			if (other.senha != null)
+				return false;
+		} else if (!senha.equals(other.senha))
+			return false;
+		if (telefone == null) {
+			if (other.telefone != null)
+				return false;
+		} else if (!telefone.equals(other.telefone))
+			return false;
+		if (telefoneEmpresa == null) {
+			if (other.telefoneEmpresa != null)
+				return false;
+		} else if (!telefoneEmpresa.equals(other.telefoneEmpresa))
+			return false;
+		return true;
+	}
     
 }

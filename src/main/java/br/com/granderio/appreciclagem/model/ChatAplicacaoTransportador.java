@@ -19,9 +19,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+*
+* Rafael Nunes - Version 1.0 - Desenvolvedor Java
+*/
 @Entity
 @NamedQueries({
     @NamedQuery(name="ChatAplicaTrans.buscarTodos", query="SELECT c FROM ChatAplicacaoTransportador c inner join c.chatTransportador WHERE c.chatTransportador.idChatTransportador = :idChat ORDER BY c.idChatAplicacaoTransportador DESC"),
@@ -29,7 +29,13 @@ import javax.persistence.TemporalType;
 })
 public class ChatAplicacaoTransportador implements Serializable{
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+	@Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long idChatAplicacaoTransportador;
   
@@ -134,5 +140,61 @@ public class ChatAplicacaoTransportador implements Serializable{
     public void setDataHora(Date dataHora) {
         this.dataHora = dataHora;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((chatTransportador == null) ? 0 : chatTransportador.hashCode());
+		result = prime * result + ((dataHora == null) ? 0 : dataHora.hashCode());
+		result = prime * result
+				+ ((idChatAplicacaoTransportador == null) ? 0 : idChatAplicacaoTransportador.hashCode());
+		result = prime * result + ((mensagem == null) ? 0 : mensagem.hashCode());
+		result = prime * result + ((reciclador == null) ? 0 : reciclador.hashCode());
+		result = prime * result + ((transportador == null) ? 0 : transportador.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ChatAplicacaoTransportador other = (ChatAplicacaoTransportador) obj;
+		if (chatTransportador == null) {
+			if (other.chatTransportador != null)
+				return false;
+		} else if (!chatTransportador.equals(other.chatTransportador))
+			return false;
+		if (dataHora == null) {
+			if (other.dataHora != null)
+				return false;
+		} else if (!dataHora.equals(other.dataHora))
+			return false;
+		if (idChatAplicacaoTransportador == null) {
+			if (other.idChatAplicacaoTransportador != null)
+				return false;
+		} else if (!idChatAplicacaoTransportador.equals(other.idChatAplicacaoTransportador))
+			return false;
+		if (mensagem == null) {
+			if (other.mensagem != null)
+				return false;
+		} else if (!mensagem.equals(other.mensagem))
+			return false;
+		if (reciclador == null) {
+			if (other.reciclador != null)
+				return false;
+		} else if (!reciclador.equals(other.reciclador))
+			return false;
+		if (transportador == null) {
+			if (other.transportador != null)
+				return false;
+		} else if (!transportador.equals(other.transportador))
+			return false;
+		return true;
+	}
 
 }

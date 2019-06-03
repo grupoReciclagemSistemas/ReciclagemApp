@@ -15,12 +15,17 @@ import javax.persistence.Id;
 
 /**
  *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
+ * Rafael Nunes - Version 1.0 - Desenvolvedor Java
  */
 @Entity
 public class Administrador implements Serializable {
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1127276776132829384L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAdmin;
     
@@ -100,5 +105,51 @@ public class Administrador implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + idAdmin;
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Administrador other = (Administrador) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (idAdmin != other.idAdmin)
+			return false;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (senha == null) {
+			if (other.senha != null)
+				return false;
+		} else if (!senha.equals(other.senha))
+			return false;
+		return true;
+	}
 
 }

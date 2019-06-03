@@ -12,13 +12,18 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 /**
- *
- * @author Rafael
- */
+*
+* Rafael Nunes - Version 1.0 - Desenvolvedor Java
+*/
 @Entity
 public class Transportador extends PessoaJuridica {
     
-    @OneToMany(mappedBy="transportador", fetch = FetchType.LAZY)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@OneToMany(mappedBy="transportador", fetch = FetchType.LAZY)
     private List<PedidoReciclagem> pedidosDeReciclagens;
     
     public Transportador(){
@@ -39,6 +44,31 @@ public class Transportador extends PessoaJuridica {
     public void setPedidosDeReciclagens(List<PedidoReciclagem> pedidosDeReciclagens) {
         this.pedidosDeReciclagens = pedidosDeReciclagens;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((pedidosDeReciclagens == null) ? 0 : pedidosDeReciclagens.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Transportador other = (Transportador) obj;
+		if (pedidosDeReciclagens == null) {
+			if (other.pedidosDeReciclagens != null)
+				return false;
+		} else if (!pedidosDeReciclagens.equals(other.pedidosDeReciclagens))
+			return false;
+		return true;
+	}
     
     
     

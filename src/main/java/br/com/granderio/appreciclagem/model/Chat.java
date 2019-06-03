@@ -19,20 +19,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+*
+* Rafael Nunes - Version 1.0 - Desenvolvedor Java
+*/
 @Entity
 public class Chat implements Serializable {
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private long idChat;
    
    @OneToMany(mappedBy="chat", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
    private List<ChatAplicacao> chatAplicacao;
    
-   //Chat ficará vinculado a negociação entre gerador e reciclador
    @OneToOne
    private Negociacao negociacao;
    
@@ -84,5 +88,39 @@ public class Chat implements Serializable {
     public void setNegociacao(Negociacao negociacao) {
         this.negociacao = negociacao;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((chatAplicacao == null) ? 0 : chatAplicacao.hashCode());
+		result = prime * result + (int) (idChat ^ (idChat >>> 32));
+		result = prime * result + ((negociacao == null) ? 0 : negociacao.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Chat other = (Chat) obj;
+		if (chatAplicacao == null) {
+			if (other.chatAplicacao != null)
+				return false;
+		} else if (!chatAplicacao.equals(other.chatAplicacao))
+			return false;
+		if (idChat != other.idChat)
+			return false;
+		if (negociacao == null) {
+			if (other.negociacao != null)
+				return false;
+		} else if (!negociacao.equals(other.negociacao))
+			return false;
+		return true;
+	}
    
 }

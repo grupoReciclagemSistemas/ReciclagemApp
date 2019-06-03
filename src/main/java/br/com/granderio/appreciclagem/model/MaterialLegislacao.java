@@ -15,13 +15,18 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 /**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+*
+* Rafael Nunes - Version 1.0 - Desenvolvedor Java
+*/
 @Entity
 public class MaterialLegislacao implements Serializable {
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idMaterialLegislacao;
 

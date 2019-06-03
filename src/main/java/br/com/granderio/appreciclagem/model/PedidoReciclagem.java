@@ -21,9 +21,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @author Rafael
- */
+*
+* Rafael Nunes - Version 1.0 - Desenvolvedor Java
+*/
 @Entity
 @NamedQueries({
     @NamedQuery(name="Pedido.buscarTodos", query="SELECT p FROM PedidoReciclagem p WHERE p.reciclador IS NULL"),
@@ -35,7 +35,12 @@ import javax.persistence.TemporalType;
 })
 public class PedidoReciclagem implements Serializable {
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long idPedidoReciclagem;
     
@@ -214,6 +219,78 @@ public class PedidoReciclagem implements Serializable {
     public void setItem(ItemPedido item) {
         this.item = item;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((data == null) ? 0 : data.hashCode());
+		result = prime * result + ((gerador == null) ? 0 : gerador.hashCode());
+		result = prime * result + (int) (idPedidoReciclagem ^ (idPedidoReciclagem >>> 32));
+		result = prime * result + ((item == null) ? 0 : item.hashCode());
+		result = prime * result + ((localEntrega == null) ? 0 : localEntrega.hashCode());
+		result = prime * result + numero;
+		result = prime * result + ((observações == null) ? 0 : observações.hashCode());
+		result = prime * result + ((reciclador == null) ? 0 : reciclador.hashCode());
+		result = prime * result + ((transportador == null) ? 0 : transportador.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(valorTotal);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PedidoReciclagem other = (PedidoReciclagem) obj;
+		if (data == null) {
+			if (other.data != null)
+				return false;
+		} else if (!data.equals(other.data))
+			return false;
+		if (gerador == null) {
+			if (other.gerador != null)
+				return false;
+		} else if (!gerador.equals(other.gerador))
+			return false;
+		if (idPedidoReciclagem != other.idPedidoReciclagem)
+			return false;
+		if (item == null) {
+			if (other.item != null)
+				return false;
+		} else if (!item.equals(other.item))
+			return false;
+		if (localEntrega == null) {
+			if (other.localEntrega != null)
+				return false;
+		} else if (!localEntrega.equals(other.localEntrega))
+			return false;
+		if (numero != other.numero)
+			return false;
+		if (observações == null) {
+			if (other.observações != null)
+				return false;
+		} else if (!observações.equals(other.observações))
+			return false;
+		if (reciclador == null) {
+			if (other.reciclador != null)
+				return false;
+		} else if (!reciclador.equals(other.reciclador))
+			return false;
+		if (transportador == null) {
+			if (other.transportador != null)
+				return false;
+		} else if (!transportador.equals(other.transportador))
+			return false;
+		if (Double.doubleToLongBits(valorTotal) != Double.doubleToLongBits(other.valorTotal))
+			return false;
+		return true;
+	}
 
     
     

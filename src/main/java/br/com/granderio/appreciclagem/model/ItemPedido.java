@@ -14,13 +14,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
- *
- * @author Rafael
- */
+*
+* Rafael Nunes - Version 1.0 - Desenvolvedor Java
+*/
 @Entity
 public class ItemPedido implements Serializable {
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long idItemPedido;
     private int seq_item;
@@ -124,6 +129,55 @@ public class ItemPedido implements Serializable {
     public void setPedidoDeReciclagem(PedidoReciclagem pedidoDeReciclagem) {
         this.pedidoDeReciclagem = pedidoDeReciclagem;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (idItemPedido ^ (idItemPedido >>> 32));
+		result = prime * result + ((material == null) ? 0 : material.hashCode());
+		result = prime * result + ((pedidoDeReciclagem == null) ? 0 : pedidoDeReciclagem.hashCode());
+		result = prime * result + ((preco == null) ? 0 : preco.hashCode());
+		result = prime * result + ((quantidade == null) ? 0 : quantidade.hashCode());
+		result = prime * result + seq_item;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ItemPedido other = (ItemPedido) obj;
+		if (idItemPedido != other.idItemPedido)
+			return false;
+		if (material == null) {
+			if (other.material != null)
+				return false;
+		} else if (!material.equals(other.material))
+			return false;
+		if (pedidoDeReciclagem == null) {
+			if (other.pedidoDeReciclagem != null)
+				return false;
+		} else if (!pedidoDeReciclagem.equals(other.pedidoDeReciclagem))
+			return false;
+		if (preco == null) {
+			if (other.preco != null)
+				return false;
+		} else if (!preco.equals(other.preco))
+			return false;
+		if (quantidade == null) {
+			if (other.quantidade != null)
+				return false;
+		} else if (!quantidade.equals(other.quantidade))
+			return false;
+		if (seq_item != other.seq_item)
+			return false;
+		return true;
+	}
     
     
 }

@@ -13,10 +13,19 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+/**
+*
+* Rafael Nunes - Version 1.0 - Desenvolvedor Java
+*/
 @Entity
 public class Gerador extends PessoaJuridica {
     
-    @OneToMany(mappedBy="gerador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@OneToMany(mappedBy="gerador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<EstoqueGerador> estoques;
     
     //Gerador tem uma lista de negociações
@@ -85,5 +94,36 @@ public class Gerador extends PessoaJuridica {
     public void setNegociacoes(List<Negociacao> negociacoes) {
         this.negociacoes = negociacoes;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((estoques == null) ? 0 : estoques.hashCode());
+		result = prime * result + ((negociacoes == null) ? 0 : negociacoes.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Gerador other = (Gerador) obj;
+		if (estoques == null) {
+			if (other.estoques != null)
+				return false;
+		} else if (!estoques.equals(other.estoques))
+			return false;
+		if (negociacoes == null) {
+			if (other.negociacoes != null)
+				return false;
+		} else if (!negociacoes.equals(other.negociacoes))
+			return false;
+		return true;
+	}
 
 }

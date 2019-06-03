@@ -18,10 +18,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 /**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- * classe para Transportador e Reciclador negociarem o preço do transporte, etc.
- */
+*
+* Rafael Nunes - Version 1.0 - Desenvolvedor Java
+*/
 @Entity
 @NamedQueries({
     @NamedQuery(name="NegociacaoTransportador.listarPorIdPedidoReciclagem", 
@@ -33,7 +32,12 @@ import javax.persistence.OneToOne;
 })
 public class NegociacaoTransportador implements Serializable{
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idNegociacaoTransportador;
     
@@ -172,5 +176,63 @@ public class NegociacaoTransportador implements Serializable{
     public void setTransportadorFinalizou(boolean transportadorFinalizou) {
         this.transportadorFinalizou = transportadorFinalizou;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((chatTransportador == null) ? 0 : chatTransportador.hashCode());
+		result = prime * result + (int) (idNegociacaoTransportador ^ (idNegociacaoTransportador >>> 32));
+		result = prime * result + ((pedido == null) ? 0 : pedido.hashCode());
+		result = prime * result + ((reciclador == null) ? 0 : reciclador.hashCode());
+		result = prime * result + (recicladorFinalizou ? 1231 : 1237);
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((transportador == null) ? 0 : transportador.hashCode());
+		result = prime * result + (transportadorFinalizou ? 1231 : 1237);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NegociacaoTransportador other = (NegociacaoTransportador) obj;
+		if (chatTransportador == null) {
+			if (other.chatTransportador != null)
+				return false;
+		} else if (!chatTransportador.equals(other.chatTransportador))
+			return false;
+		if (idNegociacaoTransportador != other.idNegociacaoTransportador)
+			return false;
+		if (pedido == null) {
+			if (other.pedido != null)
+				return false;
+		} else if (!pedido.equals(other.pedido))
+			return false;
+		if (reciclador == null) {
+			if (other.reciclador != null)
+				return false;
+		} else if (!reciclador.equals(other.reciclador))
+			return false;
+		if (recicladorFinalizou != other.recicladorFinalizou)
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
+		if (transportador == null) {
+			if (other.transportador != null)
+				return false;
+		} else if (!transportador.equals(other.transportador))
+			return false;
+		if (transportadorFinalizou != other.transportadorFinalizou)
+			return false;
+		return true;
+	}
 
 }

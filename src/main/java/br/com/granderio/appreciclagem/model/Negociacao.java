@@ -18,9 +18,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 /**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+*
+* Rafael Nunes - Version 1.0 - Desenvolvedor Java
+*/
 
 @Entity
 @NamedQueries({
@@ -35,7 +35,12 @@ import javax.persistence.NamedQuery;
 })
 public class Negociacao implements Serializable {
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idNegociacao;
     
@@ -182,5 +187,63 @@ public class Negociacao implements Serializable {
     public void setGeradorFinalozou(boolean geradorFinalizou) {
         this.geradorFinalizou = geradorFinalizou;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((chat == null) ? 0 : chat.hashCode());
+		result = prime * result + ((gerador == null) ? 0 : gerador.hashCode());
+		result = prime * result + (geradorFinalizou ? 1231 : 1237);
+		result = prime * result + (int) (idNegociacao ^ (idNegociacao >>> 32));
+		result = prime * result + ((pedido == null) ? 0 : pedido.hashCode());
+		result = prime * result + ((reciclador == null) ? 0 : reciclador.hashCode());
+		result = prime * result + (recicladorFinalizou ? 1231 : 1237);
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Negociacao other = (Negociacao) obj;
+		if (chat == null) {
+			if (other.chat != null)
+				return false;
+		} else if (!chat.equals(other.chat))
+			return false;
+		if (gerador == null) {
+			if (other.gerador != null)
+				return false;
+		} else if (!gerador.equals(other.gerador))
+			return false;
+		if (geradorFinalizou != other.geradorFinalizou)
+			return false;
+		if (idNegociacao != other.idNegociacao)
+			return false;
+		if (pedido == null) {
+			if (other.pedido != null)
+				return false;
+		} else if (!pedido.equals(other.pedido))
+			return false;
+		if (reciclador == null) {
+			if (other.reciclador != null)
+				return false;
+		} else if (!reciclador.equals(other.reciclador))
+			return false;
+		if (recicladorFinalizou != other.recicladorFinalizou)
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
+		return true;
+	}
 
 }

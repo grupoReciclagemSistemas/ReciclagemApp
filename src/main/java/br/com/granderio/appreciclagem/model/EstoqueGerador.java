@@ -16,13 +16,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
- *
- * @programador Feito por Rafael Nunes - rafaelnunes.inf@gmail.com
- */
+*
+* Rafael Nunes - Version 1.0 - Desenvolvedor Java
+*/
 @Entity
 public class EstoqueGerador implements Serializable {
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private long idEstoqueGerador;
     
@@ -77,4 +82,38 @@ public class EstoqueGerador implements Serializable {
     public void setEstoque(Estoque estoque) {
         this.estoque = estoque;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((estoque == null) ? 0 : estoque.hashCode());
+		result = prime * result + ((gerador == null) ? 0 : gerador.hashCode());
+		result = prime * result + (int) (idEstoqueGerador ^ (idEstoqueGerador >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EstoqueGerador other = (EstoqueGerador) obj;
+		if (estoque == null) {
+			if (other.estoque != null)
+				return false;
+		} else if (!estoque.equals(other.estoque))
+			return false;
+		if (gerador == null) {
+			if (other.gerador != null)
+				return false;
+		} else if (!gerador.equals(other.gerador))
+			return false;
+		if (idEstoqueGerador != other.idEstoqueGerador)
+			return false;
+		return true;
+	}
 }
