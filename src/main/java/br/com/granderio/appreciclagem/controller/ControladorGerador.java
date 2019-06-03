@@ -67,12 +67,16 @@ public class ControladorGerador extends ControladorPrincipal <Gerador> {
    }
    
    public void abrirModalNovoEstoque(){
+	   materialEscolhido = null;
+	   quantidadeDoMaterialEscolhido = 0.0;
        RequestContext.getCurrentInstance().execute("PF('varNovoEstoqueModal').show();");
    }
    
    public void abrirModalVender(EstoqueGerador estoque){
        this.estoque = estoque;
-       RequestContext.getCurrentInstance().update("formVender");
+       valorPorKG = 0.0;
+       quantidadeTotal = 0.0;
+       RequestContext.getCurrentInstance().update("modalVender");
        RequestContext.getCurrentInstance().execute("PF('varVender').show();");
    }
    
@@ -87,6 +91,7 @@ public class ControladorGerador extends ControladorPrincipal <Gerador> {
        materialEscolhido = null;
        quantidadeDoMaterialEscolhido = 0.0;
        RequestContext.getCurrentInstance().execute("PF('varNovoEstoqueModal').hide();");
+       RequestContext.getCurrentInstance().update("formInserirNovoEstoque");
    }
    
    public void onRowUnselect(UnselectEvent event){
@@ -147,15 +152,15 @@ public class ControladorGerador extends ControladorPrincipal <Gerador> {
     
     public void listarVenda(Gerador geradorLogado){
         if(estoque.getEstoque().getQuantidadeMaterial() < quantidadeTotal){
-            UtilMensagens.mensagemError("A quantidade que você quer vender é maior que o seu Estoque!");
+            UtilMensagens.mensagemError("A quantidade que você quer vender é maior que o seu Estoque");
             return;
         }
         if(valorPorKG > estoque.getEstoque().getMaterial().getPrecoMax()){
-           UtilMensagens.mensagemError("O preço que você colocou é maior que o preço máximo permitido por KG para esse Material!");
+           UtilMensagens.mensagemError("O preço que você colocou é maior que o preço máximo permitido por KG para esse Material");
             return; 
         }
          if(valorPorKG < estoque.getEstoque().getMaterial().getPrecoMin()){
-           UtilMensagens.mensagemError("O preço que você colocou é menor que o preço mínimo permitido por KG para esse Material!");
+           UtilMensagens.mensagemError("O preço que você colocou é menor que o preço mínimo permitido por KG para esse Material");
             return; 
         }
         ItemPedido itemPedido = new ItemPedido();
@@ -176,7 +181,8 @@ public class ControladorGerador extends ControladorPrincipal <Gerador> {
         acesso.inserir();
         DAO<Estoque> dao = new DAO(estoque.getEstoque());
         dao.alterar();
-        this.cancelarVenda();       
+        this.cancelarVenda();
+        UtilMensagens.mensagemInfo("Quantidade colocada para venda com sucesso");
     }
     
     public Double calcularValorTotalPedido(double quantidade, double valorPorKg){
@@ -253,15 +259,16 @@ public class ControladorGerador extends ControladorPrincipal <Gerador> {
         quantidadeTotal = 0.0;
         vender = false;
         RequestContext.getCurrentInstance().execute("PF('varVender').hide();");
+        RequestContext.getCurrentInstance().update("formVender");
     }
     
     public String adicionarNoEstoque(Gerador gerador){
         if(materialEscolhido == null){
-            UtilMensagens.mensagemError("Material escolhido é nulo!");
+            UtilMensagens.mensagemError("Você não escolheu nenhum material, caso não tenha nenhum na lista, é porque não há nenhum disponível no momento");
             return "";
         }
         if(quantidadeDoMaterialEscolhido <= 0){
-            UtilMensagens.mensagemError("Quantidade do Material escolhido é igual ou menor que 0!");
+            UtilMensagens.mensagemError("Quantidade mínima inicial: 1 KG");
             return "";
         }
         EstoqueGerador estoqueGerador = new EstoqueGerador();

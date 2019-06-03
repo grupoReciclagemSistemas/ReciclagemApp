@@ -20,17 +20,17 @@
     
     <error-page>
         <error-code>404</error-code>
-        <location>/WEB-INF/page-not-found.xhtml</location>
+        <location>/page-not-found.xhtml</location>
     </error-page>
     
     <error-page>
         <error-code>500</error-code>
-        <location>/WEB-INF/error.xhtml</location>
+        <location>/error.xhtml</location>
     </error-page>
     
     <error-page>
         <error-code>201</error-code>
-        <location>/WEB-INF/error.xhtml</location>
+        <location>/error.xhtml</location>
     </error-page>
     
     <session-config>

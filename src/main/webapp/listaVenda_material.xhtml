@@ -32,7 +32,7 @@ and open the template in the editor.
                             <p:selectOneMenu value="#{controladorPedidoReciclagem.materialFiltro}" converter="materialConverter"
                                              style="background-color: white; color: green; font-size: 14px; width: 100%;">
                                 <p:ajax event="change" />
-                                <f:selectItem itemLabel="-- SELECIONE -- " itemValue="#{null}"/>
+                                <f:selectItem itemLabel="Escolha..." itemValue="#{null}"/>
                                 <f:selectItems value="#{controladorMaterial.lista()}" itemValue="#{mat}" var="mat" itemLabel="#{mat.nome}" />
                             </p:selectOneMenu>
                             
@@ -75,8 +75,8 @@ and open the template in the editor.
                                 <h:outputText value="#{pedido.distancia}" />
                             </p:column>
                              <p:column headerText="VER NO MAPA" style="font-size: 16px;">
-                                <p:commandButton icon="fa fa-map" value="MAPA" immediate="true" update="messages"
-                                                 action="mapa?faces-redirect=true" actionListener="#{controleMap.setCenterGeoMap(pedido.retornaLatLng())}"
+                                <p:commandButton icon="fa fa-globe" value="MAPA" immediate="true" update="messages"
+                                                 action="mapa?faces-redirect=true" actionListener="#{controleMap.irConsultarNoMapa(pedido)}"
                                                  style="margin-right: 3px; background:#7cb342; 
                                              margin-right: 20px; color: white; font-weight: bold;"/>
                             </p:column>

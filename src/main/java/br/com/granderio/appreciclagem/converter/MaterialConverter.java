@@ -7,15 +7,14 @@
 package br.com.granderio.appreciclagem.converter;
 
 
-import br.com.granderio.appreciclagem.dao.DAO;
-import br.com.granderio.appreciclagem.dao.DAOMaterial;
-import br.com.granderio.appreciclagem.model.ChatAplicacao;
-import br.com.granderio.appreciclagem.model.Material;
-import br.com.granderio.appreciclagem.util.UtilError;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+
+import br.com.granderio.appreciclagem.dao.DAOMaterial;
+import br.com.granderio.appreciclagem.model.Material;
+import br.com.granderio.appreciclagem.util.UtilError;
 
 
 @FacesConverter(value="materialConverter")

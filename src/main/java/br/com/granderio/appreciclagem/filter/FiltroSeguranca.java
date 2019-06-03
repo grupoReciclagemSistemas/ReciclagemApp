@@ -34,7 +34,7 @@ import org.primefaces.context.RequestContext;
  * Filtro de Segunraça do Aplicativo de Reciclagem
  * Feito por Rafael Nunes em 21/03/2019
  * rafaelnunes.inf@gmail.com
- * @programador Desenvolvedor Java 
+ * Desenvolvedor Java 
  */
 @WebFilter(urlPatterns="/*")
 public class FiltroSeguranca implements Filter {
